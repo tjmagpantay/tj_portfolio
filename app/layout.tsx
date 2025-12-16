@@ -57,17 +57,16 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
-        c:\Users\Tj\Downloads\product-sans
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
       </head>
       <body className={`${productSans.variable} antialiased font-sans dark`}>
-        <div className="px-4 py-4 sm:px-8 sm:py-6 md:px-16 lg:px-32 xl:px-64 xl:py-8">
-          <div className="pt-20 lg:pt-0 flex flex-col lg:flex-row gap-6 lg:gap-8">
+        <div className="px-4 py-4 sm:px-8 sm:py-6 md:px-12 lg:px-20 xl:px-64 xl:py-8">
+          <div className="pt-20 lg:pt-0 flex flex-col lg:flex-row gap-4 lg:gap-4 xl:gap-8">
             <Sidebar />
-            <main className="flex-1 min-h-screen lg:ml-[20rem] xl:ml-[20rem]">
+            <main className="flex-1 min-h-screen lg:ml-[18.5rem] xl:ml-[20rem]">
               <div className="max-w-4xl">{children}</div>
             </main>
           </div>

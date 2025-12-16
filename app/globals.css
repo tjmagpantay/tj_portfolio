@@ -139,6 +139,10 @@
   animation: gradient 3s ease infinite;
 }
 
+.animate-gradient-slow {
+  animation: gradient 4s ease infinite;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -150,4 +154,8 @@
 
 .animate-fadeIn {
   animation: fadeIn 1s ease-in;
+}
+
+.scale-98 {
+  transform: scale(0.98);
 }

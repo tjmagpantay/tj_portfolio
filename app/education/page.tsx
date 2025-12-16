@@ -22,7 +22,7 @@ export default function EducationPage() {
     },
     {
       school: "Bigain Integrated School",
-      location: "Batangas",
+      location: "Bigain South San Jose, Batangas",
       degree: "Secondary Education",
       gwa: null,
       period: "2016 - 2020",
@@ -30,7 +30,7 @@ export default function EducationPage() {
     },
     {
       school: "Bigain Elementary School",
-      location: "Batangas",
+      location: "Bigain South San Jose, Batangas",
       degree: "Primary Education",
       gwa: null,
       period: "2010 - 2016",
