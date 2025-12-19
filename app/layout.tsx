@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 import EmailDialog from "@/components/EmailDialog";
+import VisitorCounter from "@/components/VisitorCounter";
 
 const productSans = localFont({
   src: [
@@ -72,6 +73,7 @@ export default function RootLayout({
           </div>
         </div>
         <EmailDialog />
+        <VisitorCounter />
       </body>
     </html>
   );
