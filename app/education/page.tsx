@@ -8,7 +8,7 @@ export default function EducationPage() {
       school: "Batangas State University – TNEU Lipa",
       location: "Lipa, Batangas",
       degree: "Bachelor of Science in Information Technology",
-      gwa: "INC man daw kami sa capstone",
+      gwa: "1.26",
       period: "Expected Graduation: July 2026",
       achievement: "Dean's Lister (1st Year – Present)",
     },
