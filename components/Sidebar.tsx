@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -27,30 +27,31 @@ export default function Sidebar() {
   const router = useRouter();
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("about");
 
   const navItems = [
-    { id: "about", label: "About Me", icon: User, path: "/about" },
+    { id: "about", label: "About Me", icon: User, path: "#about" },
     {
       id: "education",
       label: "Education",
       icon: GraduationCap,
-      path: "/education",
+      path: "#education",
     },
-    { id: "projects", label: "Projects", icon: FileText, path: "/projects" },
+    { id: "projects", label: "Projects", icon: FileText, path: "#projects" },
     {
       id: "experience",
       label: "Experience",
       icon: Briefcase,
-      path: "/experience",
+      path: "#experience",
     },
-    { id: "tools", label: "Tools", icon: Wrench, path: "/tools" },
+    { id: "tools", label: "Tools", icon: Wrench, path: "#tools" },
     {
       id: "credentials",
       label: "Micro Credentials",
       icon: Award,
-      path: "/credentials",
+      path: "#credentials",
     },
-    { id: "events", label: "Events", icon: Users, path: "/events" },
+    { id: "events", label: "Events", icon: Users, path: "#events" },
   ];
 
   const socialLinks = [
@@ -72,9 +73,58 @@ export default function Sidebar() {
     },
   ];
 
-  const handleNavigation = (path: string) => {
-    router.push(path);
-    setIsOpen(false); // Close sidebar on mobile after navigation
+  // Detect which section is in view
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = navItems.map((item) => item.id);
+      const scrollPosition = window.scrollY + 200;
+
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
+            setActiveSection(sectionId);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Run once on mount
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleNavigation = (path: string, id: string) => {
+    if (pathname !== "/") {
+      router.push("/" + path);
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+    setIsOpen(false);
+  };
+
+  const handleLogoClick = () => {
+    if (pathname !== "/") {
+      router.push("/");
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    setIsOpen(false);
   };
 
   return (
@@ -85,7 +135,7 @@ export default function Sidebar() {
           {/* Logo */}
           <div
             className="flex items-center gap-3 cursor-pointer"
-            onClick={() => handleNavigation("/")}
+            onClick={handleLogoClick}
           >
             <div className="h-10 w-10 rounded-sm overflow-hidden bg-muted flex items-center justify-center">
               <Image
@@ -130,7 +180,7 @@ export default function Sidebar() {
           {/* Profile Section - Hidden on mobile, visible on desktop */}
           <div
             className="hidden lg:flex p-6 items-center gap-4 cursor-pointer"
-            onClick={() => handleNavigation("/")}
+            onClick={handleLogoClick}
           >
             <div className="h-12 w-12 rounded-sm overflow-hidden bg-muted flex items-center justify-center">
               <Image
@@ -156,7 +206,7 @@ export default function Sidebar() {
             <div className="flex flex-col gap-1">
               {navItems.map((item) => {
                 const Icon = item.icon;
-                const isActive = pathname === item.path;
+                const isActive = activeSection === item.id;
                 return (
                   <Button
                     key={item.id}
@@ -166,7 +216,7 @@ export default function Sidebar() {
                         ? "bg-accent text-accent-foreground"
                         : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
                     }`}
-                    onClick={() => handleNavigation(item.path)}
+                    onClick={() => handleNavigation(item.path, item.id)}
                   >
                     <Icon className="h-4 w-4" />
                     {item.label}
