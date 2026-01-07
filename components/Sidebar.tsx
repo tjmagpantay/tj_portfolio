@@ -139,11 +139,11 @@ export default function Sidebar() {
           >
             <div className="h-10 w-10 rounded-sm overflow-hidden bg-muted flex items-center justify-center">
               <Image
-                src="/badges/tj-logo.png"
+                src="/icons/hershey.png"
                 alt="TJ Magpantay"
                 width={40}
                 height={40}
-                className="object-cover"
+                className="object-contain"
               />
             </div>
             <span className="text-sm font-semibold text-foreground">
@@ -184,11 +184,11 @@ export default function Sidebar() {
           >
             <div className="h-12 w-12 rounded-sm overflow-hidden bg-muted flex items-center justify-center">
               <Image
-                src="/badges/tj-logo.png"
+                src="/icons/hershey.png"
                 alt="TJ Magpantay"
                 width={48}
                 height={48}
-                className="object-cover"
+                className="object-contain"
               />
             </div>
             <div>
