@@ -6,6 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { MapPin, Award, GraduationCap, Calendar } from "lucide-react";
 import EventImageDialog from "@/components/EventImageDialog";
+import { url } from "inspector";
+import Link from "next/link";
 
 export default function Home() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -567,51 +569,58 @@ export default function Home() {
                 </div>
               </div>
 
-              <Card className="p-6 sm:p-8 border border-border bg-card rounded-2xl hover:border-muted-foreground/30 transition-all">
-                <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
-                  <div className="flex-1 space-y-4">
-                    <div className="text-xs text-muted-foreground uppercase tracking-wider font-medium">
-                      {project.category}
-                    </div>
+              <Link
+                href={"https://sikap.site/"}
+                target="_blank" // remove if internal page
+                rel="noopener noreferrer"
+                className="block group"
+              >
+                <Card className="p-6 sm:p-8 border border-border bg-card rounded-2xl hover:border-muted-foreground/30 transition-all cursor-pointer duration-200 hover:scale-[1.01]">
+                  <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+                    <div className="flex-1 space-y-4">
+                      <div className="text-xs text-muted-foreground uppercase tracking-wider font-medium">
+                        {project.category}
+                      </div>
 
-                    <div className="space-y-2">
-                      <h3 className="text-xl sm:text-2xl font-bold text-foreground leading-tight">
-                        {project.title}
-                      </h3>
-                      <p className="text-base text-muted-foreground font-medium">
-                        {project.subtitle}
+                      <div className="space-y-2">
+                        <h3 className="text-xl sm:text-2xl font-bold text-foreground leading-tight">
+                          {project.title}
+                        </h3>
+                        <p className="text-base text-muted-foreground font-medium">
+                          {project.subtitle}
+                        </p>
+                      </div>
+
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {project.description}
                       </p>
+
+                      <div className="flex flex-wrap gap-2 pt-2">
+                        {project.tags.map((tag, tagIndex) => (
+                          <Badge
+                            key={tagIndex}
+                            variant="secondary"
+                            className="text-xs px-3 py-1"
+                          >
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
                     </div>
 
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {project.description}
-                    </p>
-
-                    <div className="flex flex-wrap gap-2 pt-2">
-                      {project.tags.map((tag, tagIndex) => (
-                        <Badge
-                          key={tagIndex}
-                          variant="secondary"
-                          className="text-xs px-3 py-1"
-                        >
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="lg:w-80 lg:flex-shrink-0">
-                    <div className="relative w-full aspect-video lg:aspect-square rounded-lg overflow-hidden bg-muted">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover"
-                      />
+                    <div className="lg:w-80 lg:flex-shrink-0">
+                      <div className="relative w-full aspect-video lg:aspect-square rounded-lg overflow-hidden bg-muted">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Card>
+                </Card>
+              </Link>
             </div>
           ))}
         </section>
