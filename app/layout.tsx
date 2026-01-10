@@ -36,9 +36,9 @@ export const metadata: Metadata = {
   description:
     "Portfolio of TJ Magpantay, a fullstack developer showcasing projects, experience, and technical skills.",
   icons: {
-    icon: "/icons/hershey.png",
-    shortcut: "/icons/hershey.png",
-    apple: "/icons/hershey.png",
+    icon: "/icons/tj_logo.png",
+    shortcut: "/icons/tj_logo.png",
+    apple: "/icons/tj_logo.png",
   },
 };
 
