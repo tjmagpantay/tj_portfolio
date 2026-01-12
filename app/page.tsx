@@ -4,7 +4,19 @@ import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
-import { MapPin, Award, GraduationCap, Calendar } from "lucide-react";
+import {
+  MapPin,
+  Award,
+  GraduationCap,
+  Calendar,
+  Share2,
+  Mail,
+  Facebook,
+  Linkedin,
+  MessageSquare,
+  Github,
+  Check,
+} from "lucide-react";
 import EventImageDialog from "@/components/EventImageDialog";
 import { url } from "inspector";
 import Link from "next/link";
@@ -17,6 +29,7 @@ export default function Home() {
     title: string;
     images: string[];
   } | null>(null);
+  const [showCopied, setShowCopied] = useState(false);
 
   const introTexts = [
     { text: "Hey, I'm Tj" },
@@ -77,11 +90,22 @@ export default function Home() {
     {
       role: "Web/Mobile App Developer",
       company: "Freelance",
+      tags: [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "PHP",
+        "React Native",
+        "Flutter",
+        "Python",
+        "SQL",
+      ],
       period: "2025 - Present",
     },
     {
       role: "Associate Project Manager for Product and Innovation",
       company: "Tech Executive Labs",
+      tags: ["Figma", "Blue", "Trello", "Adobe Illustrator"],
       period: "Feb 2025 - Dec 2025",
     },
   ];
@@ -118,6 +142,25 @@ export default function Home() {
       gwa: null,
       period: "2010 - 2016",
       achievement: "Graduated with honors",
+    },
+  ];
+
+  const socialLinks = [
+    {
+      name: "LinkedIn",
+      icon: Linkedin,
+      href: "https://www.linkedin.com/in/tammy-jane-magpantay-013777285/",
+    },
+    { name: "GitHub", icon: Github, href: "https://github.com/tjmagpantay" },
+    {
+      name: "Facebook",
+      icon: Facebook,
+      href: "https://www.facebook.com/tatamidesu/",
+    },
+    {
+      name: "Discord",
+      icon: MessageSquare,
+      href: "https://discord.com/users/768389342162190356",
     },
   ];
 
@@ -431,27 +474,67 @@ export default function Home() {
       <div className="space-y-12">
         {/* About Section */}
         <section id="about" className="scroll-mt-20 space-y-4 sm:space-y-6">
-          <h2 className="text-2xl font-bold text-foreground mb-6">About Me</h2>
-          <Card className="p-4 sm:p-6 border border-border bg-card">
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Hi there!
-            </p>
-            <p className="text-base text-foreground font-medium">
-              I'm Tammy Jane M. Magpantay
-            </p>
-          </Card>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 sm:gap-6">
+            <Card className="p-0 border border-border bg-card md:col-span-1 overflow-hidden">
+              <div className="relative w-full aspect-square bg-muted">
+                <Image
+                  src="/icons/profile.jpg"
+                  alt="TJ Magpantay"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </Card>
 
-          <Card className="p-4 sm:p-6 border border-border bg-card">
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              I'm a curious developer, designer, and IT enthusiast currently
-              studying at Batangas State University TNEU – Lipa Campus. I build
-              user-focused web experiences—from clean front-end interfaces to
-              functional back-end systems. I don't just code; I design, iterate,
-              and debug with intention. I enjoy exploring new technologies,
-              continuously learning, and widening my horizons through deep
-              curiosity.
-            </p>
-          </Card>
+            {/* Right: Profile Content (3/4) */}
+            <Card className="p-4 sm:p-6 border border-border bg-card md:col-span-3 space-y-2">
+              <div className="flex items-start justify-between gap-3">
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-semibold text-foreground">
+                    Tammy Jane M. Magpantay
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    BSIT • Developer & Designer
+                  </p>
+                </div>
+                {/* Action Icons */}
+                <div className="flex gap-2 flex-shrink-0">
+                  <button
+                    onClick={() => {
+                      if (navigator.share) {
+                        navigator.share({
+                          title: "TJ Magpantay Portfolio",
+                          text: "Check out my portfolio!",
+                          url: window.location.href,
+                        });
+                      } else {
+                        navigator.clipboard.writeText(window.location.href);
+                        alert("Link copied to clipboard!");
+                      }
+                    }}
+                    className="w-8 h-8 border border-border bg-card hover:bg-accent hover:border-muted-foreground/30 transition-colors rounded-lg flex items-center justify-center flex-shrink-0"
+                    aria-label="Share portfolio"
+                  >
+                    <Share2 className="h-3.5 w-3.5 text-foreground" />
+                  </button>
+                  <a
+                    href="mailto:your.email@example.com"
+                    className="w-8 h-8 border border-border bg-card hover:bg-accent hover:border-muted-foreground/30 transition-colors rounded-lg flex items-center justify-center flex-shrink-0"
+                    aria-label="Send email"
+                  >
+                    <Mail className="h-3.5 w-3.5 text-foreground" />
+                  </a>
+                </div>
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                I'm a curious developer, designer, and IT enthusiast. I build
+                user-focused applications and system experiences from clean
+                front-end interfaces to functional back-end systems. I don’t
+                just code; I design, iterate, and debug with intention.
+              </p>
+            </Card>
+          </div>
 
           <Card className="p-4 sm:p-6 border border-border bg-card">
             <h3 className="text-sm text-muted-foreground leading-relaxed">
@@ -469,7 +552,7 @@ export default function Home() {
                       <h4 className="text-sm font-normal text-foreground mb-1">
                         {edu.degree}
                       </h4>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-xs text-muted-foreground">
                         {edu.institution}
                       </p>
                     </div>
@@ -498,9 +581,19 @@ export default function Home() {
                       <h4 className="text-sm font-medium text-foreground mb-1">
                         {exp.role}
                       </h4>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-xs text-muted-foreground">
                         {exp.company}
                       </p>
+                      <div className="flex flex-wrap gap-2 pt-2">
+                        {exp.tags.map((tag, tagIndex) => (
+                          <Badge
+                            key={tagIndex}
+                            className="text-xs text-muted-foreground px-3 py-1 border border-border bg-transparent "
+                          >
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
                     </div>
                     <span className="text-sm text-muted-foreground sm:whitespace-nowrap">
                       {exp.period}
@@ -510,6 +603,52 @@ export default function Home() {
               ))}
             </div>
           </Card>
+
+          <div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+              {/* Email */}
+              <Card className="p-4 border border-border bg-card hover:border-muted-foreground/30 transition-colors cursor-pointer relative">
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText("tjmagpantay23@gmail.com");
+                    setShowCopied(true);
+                    setTimeout(() => setShowCopied(false), 2000);
+                  }}
+                  className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors w-full"
+                >
+                  <Mail className="h-4 w-4 flex-shrink-0" />
+                  <span className="truncate">Email</span>
+                </button>
+                {showCopied && (
+                  <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-foreground text-background px-3 py-1.5 rounded-md text-xs font-medium flex items-center gap-1.5 shadow-lg animate-in fade-in slide-in-from-bottom-2 duration-200">
+                    <Check className="h-3 w-3" />
+                    Copied
+                  </div>
+                )}
+              </Card>
+
+              {/* Social Links */}
+              {socialLinks.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <Card
+                    key={social.name}
+                    className="p-4 border border-border bg-card hover:border-muted-foreground/30 transition-colors"
+                  >
+                    <a
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      <Icon className="h-4 w-4 flex-shrink-0" />
+                      <span>{social.name}</span>
+                    </a>
+                  </Card>
+                );
+              })}
+            </div>
+          </div>
         </section>
 
         {/* Education Section */}

@@ -195,7 +195,7 @@ export default function Sidebar() {
               <h2 className="text-base font-semibold text-foreground">
                 TJ Magpantay
               </h2>
-              <p className="text-sm text-muted-foreground">IT Student</p>
+              <p className="text-xs text-muted-foreground">BSIT • Developer & Designer</p>
             </div>
           </div>
 
