@@ -441,6 +441,18 @@ export default function Home() {
         "/events/Google Developer Group Manila – Build with AI Manila 2025 - 3.jpg",
       ],
     },
+        {
+      title: "Data Biz Lipa - Building A Connected Tomorrow - IOT Innovations and Beyond",
+      location: "Lipa City",
+      date: "April 2025",
+      description:
+        "Attended all sessions discussing IoT deployment in business and smart city initiatives. Gained insights from industry experts on leveraging IoT for innovation and efficiency.",
+      images: [
+        "/events/Data Biz Lipa - Building A Connected Tomorrow - IOT Innovations and Beyond - 1.jpg",
+        "/events/Data Biz Lipa - Building A Connected Tomorrow - IOT Innovations and Beyond - 2.jpg",
+        "/events/Data Biz Lipa - Building A Connected Tomorrow - IOT Innovations and Beyond - 3.jpg",
+      ],
+    },
   ];
 
   if (!showMain) {
