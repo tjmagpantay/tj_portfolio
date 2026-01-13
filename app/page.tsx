@@ -339,7 +339,7 @@ export default function Home() {
       period: "February 2025 - Present",
       description:
         "Designed user-centric prototypes and UI/UX flows using Figma, improving design clarity and development efficiency. Supported innovation initiatives by contributing to product ideation, market research, and validation strategies.",
-      tools: "Figma, Adobe Illustrator, Canva",
+      tools: ["Figma", "Adobe Illustrator", "Canva"],
     },
   ];
 
@@ -791,10 +791,17 @@ export default function Home() {
               <p className="text-sm text-muted-foreground leading-relaxed">
                 {exp.description}
               </p>
-              {exp.tools && (
-                <p className="text-xs text-muted-foreground mt-3">
-                  <span className="font-medium">Tools:</span> {exp.tools}
-                </p>
+              {exp.tools && exp.tools.length > 0 && (
+                <div className="flex flex-wrap gap-2 pt-2 mt-2">
+                  {exp.tools.map((tool, toolIndex) => (
+                    <Badge
+                      key={toolIndex}
+                      className="text-xs text-muted-foreground px-3 py-1 border border-border bg-transparent"
+                    >
+                      {tool}
+                    </Badge>
+                  ))}
+                </div>
               )}
             </Card>
           ))}
