@@ -332,6 +332,8 @@ export default function Home() {
       period: "June 2025 – Present",
       description:
         "Developed fullstack applications including web-based, mobile, and software applications tailored to client needs and requirements.",
+      tools: ["HTML", "CSS", "JavaScript", "PHP", "Flutter", "Python", "SQL"],
+        
     },
     {
       role: "Associate Project Manager for Product and Innovation",
@@ -339,7 +341,7 @@ export default function Home() {
       period: "February 2025 - Present",
       description:
         "Designed user-centric prototypes and UI/UX flows using Figma, improving design clarity and development efficiency. Supported innovation initiatives by contributing to product ideation, market research, and validation strategies.",
-      tools: ["Figma", "Adobe Illustrator", "Canva"],
+      tools: ["Figma", "Adobe Illustrator", "Canva"]
     },
   ];
 
