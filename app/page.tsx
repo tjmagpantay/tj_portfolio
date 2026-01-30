@@ -80,7 +80,7 @@ export default function Home() {
       period: "2022 - 2026",
     },
     {
-      degree: "TVL-ICT - Mobile App and Web Development",
+      degree: "TVL-IT - Mobile App and Web Development",
       institution: "STI College Batangas",
       period: "2020 - 2022",
     },
