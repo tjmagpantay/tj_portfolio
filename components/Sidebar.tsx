@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -16,6 +15,7 @@ import {
   Github,
   Facebook,
   MessageSquare,
+  Mail,
   GraduationCap,
   Menu,
   X,
@@ -32,18 +32,18 @@ export default function Sidebar() {
   const navItems = [
     { id: "about", label: "About Me", icon: User, path: "#about" },
     {
+      id: "experience",
+      label: "Experience",
+      icon: Briefcase,
+      path: "#experience",
+    },
+    {
       id: "education",
       label: "Education",
       icon: GraduationCap,
       path: "#education",
     },
     { id: "projects", label: "Projects", icon: FileText, path: "#projects" },
-    {
-      id: "experience",
-      label: "Experience",
-      icon: Briefcase,
-      path: "#experience",
-    },
     { id: "tools", label: "Tools", icon: Wrench, path: "#tools" },
     {
       id: "credentials",
@@ -70,6 +70,11 @@ export default function Sidebar() {
       name: "Discord",
       icon: MessageSquare,
       href: "https://discord.com/users/768389342162190356",
+    },
+    {
+      name: "Email",
+      icon: Mail,
+      href: "mailto:tjmagpantay@gmail.com",
     },
   ];
 
@@ -130,7 +135,7 @@ export default function Sidebar() {
   return (
     <>
       {/* Mobile Top Navbar */}
-      <div className="fixed top-0 left-0 right-0 z-[60] lg:hidden bg-card border-b border-border">
+      <div className="fixed top-0 left-0 right-0 z-60 lg:hidden bg-card border-b border-border">
         <div className="flex items-center justify-between px-4 py-3">
           {/* Logo */}
           <div
@@ -195,7 +200,9 @@ export default function Sidebar() {
               <h2 className="text-base font-semibold text-foreground">
                 TJ Magpantay
               </h2>
-              <p className="text-xs text-muted-foreground">BSIT • Developer & Designer</p>
+              <p className="text-xs text-muted-foreground">
+                BSIT • Developer & Designer
+              </p>
             </div>
           </div>
 
@@ -203,7 +210,7 @@ export default function Sidebar() {
 
           {/* Navigation Menu */}
           <nav className="flex-1 py-4 px-3 overflow-y-auto pt-6 lg:pt-4">
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1.5">
               {navItems.map((item) => {
                 const Icon = item.icon;
                 const isActive = activeSection === item.id;
@@ -229,11 +236,11 @@ export default function Sidebar() {
           <Separator className="bg-border" />
 
           {/* Socials Section */}
-          <div className="p-4">
-            <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3 px-2">
+          <div className="p-4 lg:p-5">
+            <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3 px-1">
               Socials
             </h3>
-            <div className="flex flex-col gap-1">
+            <div className="flex items-center gap-2 flex-wrap">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
                 return (
@@ -242,10 +249,10 @@ export default function Sidebar() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent/50 rounded-md transition-colors"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                    aria-label={social.name}
                   >
                     <Icon className="h-4 w-4" />
-                    {social.name}
                   </a>
                 );
               })}

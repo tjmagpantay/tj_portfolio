@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+// Ignore missing type declarations for side-effect CSS import
+// @ts-ignore
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 import EmailDialog from "@/components/EmailDialog";
@@ -53,8 +55,10 @@ export default function RootLayout({
         <div className="px-4 py-4 sm:px-8 sm:py-6 md:px-12 lg:px-20 xl:px-64 xl:py-8">
           <div className="pt-20 lg:pt-0 flex flex-col lg:flex-row gap-4 lg:gap-4 xl:gap-8">
             <Sidebar />
-            <main className="flex-1 min-h-screen lg:ml-[18.5rem] xl:ml-[20rem]">
-              <div className="max-w-4xl">{children}</div>
+            <main className="flex-1 min-h-screen lg:ml-64 xl:ml-72">
+              <div className="mx-auto w-full max-w-4xl px-4 sm:px-6">
+                {children}
+              </div>
             </main>
           </div>
         </div>

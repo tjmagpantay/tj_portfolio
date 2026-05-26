@@ -5,6 +5,8 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import {
+  ChevronLeft,
+  ChevronRight,
   MapPin,
   Award,
   GraduationCap,
@@ -18,8 +20,9 @@ import {
   Check,
 } from "lucide-react";
 import EventImageDialog from "@/components/EventImageDialog";
-import { url } from "inspector";
-import Link from "next/link";
+import ProjectDetailsDialog, {
+  type Project,
+} from "@/components/ProjectDetailsDialog";
 
 export default function Home() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -29,6 +32,9 @@ export default function Home() {
     title: string;
     images: string[];
   } | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [activeProjectIndex, setActiveProjectIndex] = useState(0);
+  const [activeEventIndex, setActiveEventIndex] = useState(0);
   const [showCopied, setShowCopied] = useState(false);
 
   const introTexts = [
@@ -71,6 +77,15 @@ export default function Home() {
     }
   };
 
+  const getCarouselTrackStyle = (activeIndex: number) => ({
+    transform: `translateX(-${activeIndex * 100}%)`,
+  });
+
+  const getCarouselDotClass = (index: number, activeIndex: number) =>
+    `h-2 rounded-full transition-all duration-300 ${
+      index === activeIndex ? "w-8 bg-foreground" : "w-2 bg-muted-foreground/40"
+    }`;
+
   // Data for all sections
   const education = [
     {
@@ -88,7 +103,18 @@ export default function Home() {
 
   const experienceTimeline = [
     {
-      role: "Web/Mobile App Developer",
+      role: "DevOps Intern",
+      company: "Internship",
+      tags: [
+        "Google Workspace Applications",
+        "ZOHO CRM",
+        "App Script",
+        "Deluge",
+      ],
+      period: "Feb 2026 - May 2026",
+    },
+    {
+      role: "Fullstack Developer",
       company: "Freelance",
       tags: [
         "HTML",
@@ -100,7 +126,7 @@ export default function Home() {
         "Python",
         "SQL",
       ],
-      period: "2025 - Present",
+      period: "Jan 2025 - Present",
     },
     {
       role: "Associate Project Manager for Product and Innovation",
@@ -112,7 +138,7 @@ export default function Home() {
 
   const educationFull = [
     {
-      school: "Batangas State University – TNEU Lipa",
+      school: "Batangas State University TNEU – Lipa Campus",
       location: "Lipa, Batangas",
       degree: "Bachelor of Science in Information Technology",
       gwa: "1.26",
@@ -126,22 +152,6 @@ export default function Home() {
       gwa: "95",
       period: "September 2020 - June 2022",
       achievement: "Best Work Immersion (2022)",
-    },
-    {
-      school: "Bigain Integrated School",
-      location: "Bigain South San Jose, Batangas",
-      degree: "Secondary Education",
-      gwa: null,
-      period: "2016 - 2020",
-      achievement: "Graduated with honors",
-    },
-    {
-      school: "Bigain Elementary School",
-      location: "Bigain South San Jose, Batangas",
-      degree: "Primary Education",
-      gwa: null,
-      period: "2010 - 2016",
-      achievement: "Graduated with honors",
     },
   ];
 
@@ -327,13 +337,25 @@ export default function Home() {
 
   const experiences = [
     {
+      role: "DevOps Intern",
+      company: "Internship",
+      period: "February 2026 -  May 2026",
+      description:
+        "Developed and deployed 3 Google Workspace automation projects using Google App Script. Programmed CRM automations using Zoho Deluge, improving workflow efficiency and data management for the organization. Developed an After-Sales Workflow Blueprint in Zoho CRM that automated post-sales service tracking.",
+      tools: [
+        "Google Workspace Applications",
+        "ZOHO CRM",
+        "App Script",
+        "Deluge",
+      ],
+    },
+    {
       role: "Fullstack Developer",
       company: "Freelance",
       period: "June 2025 – Present",
       description:
         "Developed fullstack applications including web-based, mobile, and software applications tailored to client needs and requirements.",
       tools: ["HTML", "CSS", "JavaScript", "PHP", "Flutter", "Python", "SQL"],
-        
     },
     {
       role: "Associate Project Manager for Product and Innovation",
@@ -341,7 +363,7 @@ export default function Home() {
       period: "February 2025 - Present",
       description:
         "Designed user-centric prototypes and UI/UX flows using Figma, improving design clarity and development efficiency. Supported innovation initiatives by contributing to product ideation, market research, and validation strategies.",
-      tools: ["Figma", "Adobe Illustrator", "Canva"]
+      tools: ["Figma", "Adobe Illustrator", "Canva"],
     },
   ];
 
@@ -441,8 +463,9 @@ export default function Home() {
         "/events/Google Developer Group Manila – Build with AI Manila 2025 - 3.jpg",
       ],
     },
-        {
-      title: "Data Biz Lipa - Building A Connected Tomorrow - IOT Innovations and Beyond",
+    {
+      title:
+        "Data Biz Lipa - Building A Connected Tomorrow - IOT Innovations and Beyond",
       location: "Lipa City",
       date: "April 2025",
       description:
@@ -458,7 +481,7 @@ export default function Home() {
   if (!showMain) {
     return (
       <div
-        className={`fixed inset-0 flex items-center justify-center bg-background z-[9999] transition-opacity duration-700 ${
+        className={`fixed inset-0 flex items-center justify-center bg-background z-9999 transition-opacity duration-700 ${
           isExiting ? "opacity-0" : "opacity-100"
         }`}
       >
@@ -467,13 +490,13 @@ export default function Home() {
             <div
               key={index}
               className={`absolute inset-0 flex items-center justify-center transition-transform duration-700 ease-out ${getAnimationClass(
-                index
+                index,
               )}`}
               style={{
                 transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
               }}
             >
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-foreground via-muted-foreground to-foreground bg-clip-text text-transparent animate-gradient-slow">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-linear-to-r from-foreground via-muted-foreground to-foreground bg-clip-text text-transparent animate-gradient-slow">
                 {item.text}
               </h1>
             </div>
@@ -513,7 +536,7 @@ export default function Home() {
                   </p>
                 </div>
                 {/* Action Icons */}
-                <div className="flex gap-2 flex-shrink-0">
+                <div className="flex gap-2 shrink-0">
                   <button
                     onClick={() => {
                       if (navigator.share) {
@@ -527,14 +550,14 @@ export default function Home() {
                         alert("Link copied to clipboard!");
                       }
                     }}
-                    className="w-8 h-8 border border-border bg-card hover:bg-accent hover:border-muted-foreground/30 transition-colors rounded-lg flex items-center justify-center flex-shrink-0"
+                    className="w-8 h-8 border border-border bg-card hover:bg-accent hover:border-muted-foreground/30 transition-colors rounded-lg flex items-center justify-center shrink-0"
                     aria-label="Share portfolio"
                   >
                     <Share2 className="h-3.5 w-3.5 text-foreground" />
                   </button>
                   <a
                     href="mailto:your.email@example.com"
-                    className="w-8 h-8 border border-border bg-card hover:bg-accent hover:border-muted-foreground/30 transition-colors rounded-lg flex items-center justify-center flex-shrink-0"
+                    className="w-8 h-8 border border-border bg-card hover:bg-accent hover:border-muted-foreground/30 transition-colors rounded-lg flex items-center justify-center shrink-0"
                     aria-label="Send email"
                   >
                     <Mail className="h-3.5 w-3.5 text-foreground" />
@@ -552,35 +575,6 @@ export default function Home() {
 
           <Card className="p-4 sm:p-6 border border-border bg-card">
             <h3 className="text-sm text-muted-foreground leading-relaxed">
-              Education
-            </h3>
-            <div className="space-y-4 sm:space-y-6">
-              {education.map((edu, index) => (
-                <div key={index} className="relative pl-4 sm:pl-6">
-                  <div className="absolute left-0 top-2 w-2 h-2 rounded-full bg-muted-foreground/50" />
-                  {index < education.length - 1 && (
-                    <div className="absolute left-[3px] top-4 w-[2px] h-[calc(100%+1rem)] bg-border" />
-                  )}
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-4">
-                    <div className="flex-1">
-                      <h4 className="text-sm font-normal text-foreground mb-1">
-                        {edu.degree}
-                      </h4>
-                      <p className="text-xs text-muted-foreground">
-                        {edu.institution}
-                      </p>
-                    </div>
-                    <span className="text-sm text-muted-foreground sm:whitespace-nowrap">
-                      {edu.period}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Card>
-
-          <Card className="p-4 sm:p-6 border border-border bg-card">
-            <h3 className="text-sm text-muted-foreground leading-relaxed">
               Experience
             </h3>
             <div className="space-y-4 sm:space-y-6">
@@ -588,7 +582,7 @@ export default function Home() {
                 <div key={index} className="relative pl-4 sm:pl-6">
                   <div className="absolute left-0 top-2 w-2 h-2 rounded-full bg-muted-foreground/50" />
                   {index < experienceTimeline.length - 1 && (
-                    <div className="absolute left-[3px] top-4 w-[2px] h-[calc(100%+1rem)] bg-border" />
+                    <div className="absolute left-0.75 top-4 w-0.5 h-[calc(100%+1rem)] bg-border" />
                   )}
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-4">
                     <div className="flex-1">
@@ -618,6 +612,35 @@ export default function Home() {
             </div>
           </Card>
 
+          <Card className="p-4 sm:p-6 border border-border bg-card">
+            <h3 className="text-sm text-muted-foreground leading-relaxed">
+              Education
+            </h3>
+            <div className="space-y-4 sm:space-y-6">
+              {education.map((edu, index) => (
+                <div key={index} className="relative pl-4 sm:pl-6">
+                  <div className="absolute left-0 top-2 w-2 h-2 rounded-full bg-muted-foreground/50" />
+                  {index < education.length - 1 && (
+                    <div className="absolute left-0.75 top-4 w-0.5 h-[calc(100%+1rem)] bg-border" />
+                  )}
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-4">
+                    <div className="flex-1">
+                      <h4 className="text-sm font-normal text-foreground mb-1">
+                        {edu.degree}
+                      </h4>
+                      <p className="text-xs text-muted-foreground">
+                        {edu.institution}
+                      </p>
+                    </div>
+                    <span className="text-sm text-muted-foreground sm:whitespace-nowrap">
+                      {edu.period}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Card>
+
           <div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
               {/* Email */}
@@ -630,7 +653,7 @@ export default function Home() {
                   }}
                   className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors w-full"
                 >
-                  <Mail className="h-4 w-4 flex-shrink-0" />
+                  <Mail className="h-4 w-4 shrink-0" />
                   <span className="truncate">Email</span>
                 </button>
                 {showCopied && (
@@ -655,7 +678,7 @@ export default function Home() {
                       rel="noopener noreferrer"
                       className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      <Icon className="h-4 w-4 flex-shrink-0" />
+                      <Icon className="h-4 w-4 shrink-0" />
                       <span>{social.name}</span>
                     </a>
                   </Card>
@@ -663,6 +686,49 @@ export default function Home() {
               })}
             </div>
           </div>
+        </section>
+
+        {/* Experience Section */}
+        <section
+          id="experience"
+          className="scroll-mt-20 space-y-4 sm:space-y-6"
+        >
+          <h2 className="text-2xl font-bold text-foreground mb-6">
+            Experience
+          </h2>
+          {experiences.map((exp, index) => (
+            <Card
+              key={index}
+              className="p-4 sm:p-6 border border-border bg-card"
+            >
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-3">
+                <h3 className="text-base font-semibold text-foreground">
+                  {exp.role}
+                </h3>
+                <Badge variant="secondary" className="text-xs w-fit">
+                  {exp.period}
+                </Badge>
+              </div>
+              <p className="text-sm text-muted-foreground mb-3">
+                {exp.company}
+              </p>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {exp.description}
+              </p>
+              {exp.tools && exp.tools.length > 0 && (
+                <div className="flex flex-wrap gap-2 pt-2 mt-2">
+                  {exp.tools.map((tool, toolIndex) => (
+                    <Badge
+                      key={toolIndex}
+                      className="text-xs text-muted-foreground px-3 py-1 border border-border bg-transparent"
+                    >
+                      {tool}
+                    </Badge>
+                  ))}
+                </div>
+              )}
+            </Card>
+          ))}
         </section>
 
         {/* Education Section */}
@@ -714,111 +780,114 @@ export default function Home() {
         {/* Projects Section */}
         <section id="projects" className="scroll-mt-20 space-y-4 sm:space-y-6">
           <h2 className="text-2xl font-bold text-foreground mb-6">Projects</h2>
-          {projects.map((project, index) => (
-            <div key={index} className="relative">
-              <div className="absolute -top-3 right-4 sm:right-6 z-10">
-                <div className="bg-foreground text-background px-4 py-1.5 rounded-full text-xs font-medium shadow-sm">
-                  {project.pillLabel}
-                </div>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between gap-3">
+              <p className="text-sm text-muted-foreground">
+                {String(activeProjectIndex + 1).padStart(2, "0")} /{" "}
+                {String(projects.length).padStart(2, "0")}
+              </p>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setActiveProjectIndex(
+                      (prev) => (prev - 1 + projects.length) % projects.length,
+                    )
+                  }
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors hover:bg-accent"
+                  aria-label="Previous project"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setActiveProjectIndex(
+                      (prev) => (prev + 1) % projects.length,
+                    )
+                  }
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors hover:bg-accent"
+                  aria-label="Next project"
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </button>
               </div>
-
-              <Link
-                href={"https://sikap.site/"}
-                target="_blank" // remove if internal page
-                rel="noopener noreferrer"
-                className="block group"
-              >
-                <Card className="p-6 sm:p-8 border border-border bg-card rounded-2xl hover:border-muted-foreground/30 transition-all cursor-pointer duration-200 hover:scale-[1.01]">
-                  <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
-                    <div className="flex-1 space-y-4">
-                      <div className="text-xs text-muted-foreground uppercase tracking-wider font-medium">
-                        {project.category}
-                      </div>
-
-                      <div className="space-y-2">
-                        <h3 className="text-xl sm:text-2xl font-bold text-foreground leading-tight">
-                          {project.title}
-                        </h3>
-                        <p className="text-base text-muted-foreground font-medium">
-                          {project.subtitle}
-                        </p>
-                      </div>
-
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {project.description}
-                      </p>
-
-                      <div className="flex flex-wrap gap-2 pt-2">
-                        {project.tags.map((tag, tagIndex) => (
-                          <Badge
-                            key={tagIndex}
-                            variant="secondary"
-                            className="text-xs px-3 py-1"
-                          >
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="lg:w-80 lg:flex-shrink-0">
-                      <div className="relative w-full aspect-video lg:aspect-square rounded-lg overflow-hidden bg-muted">
-                        <Image
-                          src={project.image}
-                          alt={project.title}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-              </Link>
             </div>
-          ))}
-        </section>
 
-        {/* Experience Section */}
-        <section
-          id="experience"
-          className="scroll-mt-20 space-y-4 sm:space-y-6"
-        >
-          <h2 className="text-2xl font-bold text-foreground mb-6">
-            Experience
-          </h2>
-          {experiences.map((exp, index) => (
-            <Card
-              key={index}
-              className="p-4 sm:p-6 border border-border bg-card"
-            >
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-3">
-                <h3 className="text-base font-semibold text-foreground">
-                  {exp.role}
-                </h3>
-                <Badge variant="secondary" className="text-xs w-fit">
-                  {exp.period}
-                </Badge>
-              </div>
-              <p className="text-sm text-muted-foreground mb-3">
-                {exp.company}
-              </p>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {exp.description}
-              </p>
-              {exp.tools && exp.tools.length > 0 && (
-                <div className="flex flex-wrap gap-2 pt-2 mt-2">
-                  {exp.tools.map((tool, toolIndex) => (
-                    <Badge
-                      key={toolIndex}
-                      className="text-xs text-muted-foreground px-3 py-1 border border-border bg-transparent"
+            <div className="overflow-hidden rounded-3xl border border-border bg-card/40 p-2 sm:p-4 shadow-[0_20px_60px_rgba(0,0,0,0.18)]">
+              <div
+                className="flex transition-transform duration-500 ease-out"
+                style={getCarouselTrackStyle(activeProjectIndex)}
+              >
+                {projects.map((project) => (
+                  <div key={project.title} className="min-w-full px-1 sm:px-2">
+                    <button
+                      type="button"
+                      onClick={() => setSelectedProject(project)}
+                      className="block w-full text-left"
                     >
-                      {tool}
-                    </Badge>
-                  ))}
-                </div>
-              )}
-            </Card>
-          ))}
+                      <Card className="h-88 sm:h-96 border border-white/10 bg-card/80 backdrop-blur-xl p-4 sm:p-6 transition-colors hover:border-muted-foreground/30">
+                        <div className="flex h-full flex-col gap-4 sm:flex-row sm:items-stretch">
+                          <div className="relative h-44 w-full overflow-hidden rounded-2xl bg-muted sm:h-full sm:w-2/5">
+                            <Image
+                              src={project.image}
+                              alt={project.title}
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+
+                          <div className="min-w-0 flex-1 space-y-4">
+                            <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
+                              <span>{project.category}</span>
+                              <span className="h-1 w-1 rounded-full bg-muted-foreground/60" />
+                              <span>{project.pillLabel}</span>
+                            </div>
+                            <div className="space-y-1">
+                              <h3 className="text-xl font-semibold text-foreground leading-tight">
+                                {project.title}
+                              </h3>
+                              <p className="text-sm text-muted-foreground">
+                                {project.subtitle}
+                              </p>
+                            </div>
+                            <p className="text-sm leading-relaxed text-muted-foreground">
+                              {project.description}
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                              {project.tags.map((tag) => (
+                                <Badge
+                                  key={tag}
+                                  className="border border-border bg-transparent text-xs text-muted-foreground"
+                                >
+                                  {tag}
+                                </Badge>
+                              ))}
+                            </div>
+                            <p className="text-xs text-muted-foreground">
+                              Tap the card to view project details.
+                            </p>
+                          </div>
+                        </div>
+                      </Card>
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex justify-center gap-2">
+              {projects.map((project, index) => (
+                <button
+                  key={project.title}
+                  type="button"
+                  onClick={() => setActiveProjectIndex(index)}
+                  className={getCarouselDotClass(index, activeProjectIndex)}
+                  aria-label={`Go to project ${index + 1}`}
+                />
+              ))}
+            </div>
+          </div>
         </section>
 
         {/* Tools Section */}
@@ -866,7 +935,6 @@ export default function Home() {
             Micro Credentials
           </h2>
 
-          {/* Certifications & Licenses */}
           <div className="space-y-4">
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-1">
@@ -876,7 +944,7 @@ export default function Home() {
                 Professional certifications and official licenses
               </p>
             </div>
-            <div className="space-y-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
               {[
                 {
                   name: "PHILNITS Passer – 2025 (A)",
@@ -927,11 +995,11 @@ export default function Home() {
                   href={credential.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block"
+                  className="block h-full"
                 >
-                  <Card className="p-4 sm:p-6 border border-border bg-card hover:border-muted-foreground/30 transition-colors cursor-pointer">
-                    <div className="flex flex-col sm:flex-row gap-4">
-                      <div className="flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 bg-accent/20 rounded-lg border border-border/50 flex items-center justify-center overflow-hidden">
+                  <Card className="h-full p-4 sm:p-5 border border-border bg-card hover:border-muted-foreground/30 transition-colors cursor-pointer">
+                    <div className="flex flex-col gap-4">
+                      <div className="shrink-0 w-full aspect-square bg-accent/20 rounded-lg border border-border/50 flex items-center justify-center overflow-hidden">
                         <Image
                           src={credential.badge}
                           alt={credential.name}
@@ -972,7 +1040,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* AI & Cloud */}
           <div className="space-y-4">
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-1">
@@ -982,7 +1049,7 @@ export default function Home() {
                 Artificial Intelligence and Cloud Computing credentials
               </p>
             </div>
-            <div className="space-y-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
               {[
                 {
                   name: "AI Fundamentals with IBM SkillsBuild",
@@ -1047,11 +1114,11 @@ export default function Home() {
                   href={credential.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block"
+                  className="block h-full"
                 >
-                  <Card className="p-4 sm:p-6 border border-border bg-card hover:border-muted-foreground/30 transition-colors cursor-pointer">
-                    <div className="flex flex-col sm:flex-row gap-4">
-                      <div className="flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 bg-accent/20 rounded-lg border border-border/50 flex items-center justify-center overflow-hidden">
+                  <Card className="h-full p-4 sm:p-5 border border-border bg-card hover:border-muted-foreground/30 transition-colors cursor-pointer">
+                    <div className="flex flex-col gap-4">
+                      <div className="shrink-0 w-full aspect-square bg-accent/20 rounded-lg border border-border/50 flex items-center justify-center overflow-hidden">
                         <Image
                           src={credential.badge}
                           alt={credential.name}
@@ -1091,38 +1158,123 @@ export default function Home() {
         {/* Events Section */}
         <section id="events" className="scroll-mt-20 space-y-4 sm:space-y-6">
           <h2 className="text-2xl font-bold text-foreground mb-6">Events</h2>
-          {events.map((event, index) => (
-            <Card
-              key={index}
-              className="p-4 sm:p-6 border border-border bg-card hover:border-muted-foreground/30 transition-colors cursor-pointer"
-              onClick={() =>
-                setSelectedEvent({ title: event.title, images: event.images })
-              }
-            >
-              <div className="space-y-3">
-                <h3 className="text-base sm:text-lg font-semibold text-foreground leading-tight">
-                  {event.title}
-                </h3>
-
-                <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-1.5">
-                    <MapPin className="h-4 w-4" />
-                    <span>{event.location}</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <Calendar className="h-4 w-4" />
-                    <span>{event.date}</span>
-                  </div>
-                </div>
-
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {event.description}
-                </p>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between gap-3">
+              <p className="text-sm text-muted-foreground">
+                {String(activeEventIndex + 1).padStart(2, "0")} /{" "}
+                {String(events.length).padStart(2, "0")}
+              </p>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setActiveEventIndex(
+                      (prev) => (prev - 1 + events.length) % events.length,
+                    )
+                  }
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors hover:bg-accent"
+                  aria-label="Previous event"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setActiveEventIndex((prev) => (prev + 1) % events.length)
+                  }
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors hover:bg-accent"
+                  aria-label="Next event"
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </button>
               </div>
-            </Card>
-          ))}
+            </div>
+
+            <div className="overflow-hidden rounded-3xl border border-border bg-card/40 p-2 sm:p-4 shadow-[0_20px_60px_rgba(0,0,0,0.18)]">
+              <div
+                className="flex transition-transform duration-500 ease-out"
+                style={getCarouselTrackStyle(activeEventIndex)}
+              >
+                {events.map((event) => (
+                  <div key={event.title} className="min-w-full px-1 sm:px-2">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setSelectedEvent({
+                          title: event.title,
+                          images: event.images,
+                        })
+                      }
+                      className="block w-full text-left"
+                    >
+                      <Card className="h-96 sm:h-104 border border-white/10 bg-card/80 backdrop-blur-xl p-4 sm:p-6 transition-colors hover:border-muted-foreground/30">
+                        <div className="flex h-full flex-col justify-between gap-4">
+                          <div className="space-y-3">
+                            <h3 className="text-xl font-semibold text-foreground leading-tight">
+                              {event.title}
+                            </h3>
+
+                            <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
+                              <div className="flex items-center gap-1.5">
+                                <MapPin className="h-4 w-4" />
+                                <span>{event.location}</span>
+                              </div>
+                              <div className="flex items-center gap-1.5">
+                                <Calendar className="h-4 w-4" />
+                                <span>{event.date}</span>
+                              </div>
+                            </div>
+
+                            <p className="text-sm leading-relaxed text-muted-foreground">
+                              {event.description}
+                            </p>
+                          </div>
+
+                          <div className="grid grid-cols-3 gap-2">
+                            {event.images.slice(0, 3).map((image) => (
+                              <div
+                                key={image}
+                                className="relative aspect-square overflow-hidden rounded-xl bg-muted"
+                              >
+                                <Image
+                                  src={image}
+                                  alt={event.title}
+                                  fill
+                                  className="object-cover"
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </Card>
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex justify-center gap-2">
+              {events.map((event, index) => (
+                <button
+                  key={event.title}
+                  type="button"
+                  onClick={() => setActiveEventIndex(index)}
+                  className={getCarouselDotClass(index, activeEventIndex)}
+                  aria-label={`Go to event ${index + 1}`}
+                />
+              ))}
+            </div>
+          </div>
         </section>
       </div>
+
+      {selectedProject && (
+        <ProjectDetailsDialog
+          isOpen={!!selectedProject}
+          onClose={() => setSelectedProject(null)}
+          project={selectedProject}
+        />
+      )}
 
       {selectedEvent && (
         <EventImageDialog
