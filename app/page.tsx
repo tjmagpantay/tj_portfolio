@@ -952,7 +952,7 @@ export default function Home() {
                   issuer: "PHILNITS / IPA Philippines",
                   date: "2025",
                   badge: "/badges/PHILNITS.jpg",
-                  link: "https://philnits.org/passers-ip/?fbclid=IwY2xjawOt4aBleHRuA2FlbQIxMABicmlkETFkY3Z1MVdkZ0hXV1JrM0Zzc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHntLJpIq4m_AlToeV2oFGseuhF6L2cjJsHf6-mef4vRv1OVc8xrBLN52F2jN_aem_DzkbM6Eswt4IW_LMd3im0w",
+                  link: "https://www.itpec.org/statsandresults/all-passers.html",
                 },
                 {
                   name: "Google Project Management Professional Certificate (v2)",
