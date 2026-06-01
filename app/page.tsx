@@ -78,7 +78,7 @@ export default function Home() {
   };
 
   const getCarouselTrackStyle = (activeIndex: number) => ({
-    transform: `translateX(-${activeIndex * 100}%)`,
+    transform: `translateX(calc(10% - ${activeIndex * 80}%))`,
   });
 
   const getCarouselDotClass = (index: number, activeIndex: number) =>
@@ -121,10 +121,14 @@ export default function Home() {
         "CSS",
         "JavaScript",
         "PHP",
-        "React Native",
         "Flutter",
         "Python",
         "SQL",
+        "React",
+        "React Native",
+        "Node.js",
+        "Tailwind CSS",
+        "C++",
       ],
       period: "Jan 2025 - Present",
     },
@@ -176,16 +180,6 @@ export default function Home() {
 
   const projects = [
     {
-      category: "Web Development",
-      title: "Portfolio Website",
-      subtitle: "Personal Brand & Showcase",
-      description:
-        "A modern, responsive portfolio website built with Next.js and shadcn/ui. Designed with a clean UI, smooth navigation, and optimized performance to effectively showcase projects, skills, and professional experience.",
-      tags: ["2025", "Next.js", "TypeScript"],
-      pillLabel: "Project",
-      image: "/projects-img/1.png",
-    },
-    {
       category: "Web Platform",
       title: "SIKAP",
       subtitle: "Employment Platform",
@@ -208,9 +202,39 @@ export default function Home() {
       subtitle: "Employment Platform (Mobile)",
       description:
         "Developed the mobile version of the SIKAP employment platform, showcasing core features such as job browsing, saving jobs, profile viewing, and job recommendations.",
-      tags: ["Jun 2025 – Aug 2025", "Flutter", "PHP"],
+      tags: ["Jun 2025 – Aug 2025", "Flutter", "PHP", "REST API"],
       pillLabel: "Project",
       image: "/projects-img/3.png",
+    },
+    {
+      category: "Reservation System",
+      title: "Elnimo Reservation System",
+      subtitle: "Elnimo's Resort Reservation System",
+      description:
+        "Developed core system functionalities, including the landing page, user registration and management, reservation processing, administrative booking management, and inventory tracking for resort operations.",
+      tags: ["2026", "PHP, Bootstrap, MySQL, AppScript"],
+      pillLabel: "Freelance",
+      image: "/projects-img/1.png",
+    },
+    {
+      category: "Compliance System",
+      title: "COMET",
+      subtitle: "Compliance Monitoring and Evaluation Tool",
+      description:
+        "Developed a full-stack web application for managing organizational compliance reports and document submissions, streamlining the monitoring and evaluation process for clients and administrators.",
+      tags: ["2026", "PHP, Tailwind, MySQL, AppScript"],
+      pillLabel: "Freelance",
+      image: "/projects-img/8.png",
+    },
+    {
+      category: "Web Development",
+      title: "Portfolio Website",
+      subtitle: "Personal Brand & Showcase",
+      description:
+        "A modern, responsive portfolio website built with Next.js and shadcn/ui. Designed with a clean UI, smooth navigation, and optimized performance to effectively showcase projects, skills, and professional experience.",
+      tags: ["2025", "Next.js", "TypeScript"],
+      pillLabel: "Project",
+      image: "/projects-img/1.png",
     },
     {
       category: "E-commerce",
@@ -339,6 +363,7 @@ export default function Home() {
     {
       role: "DevOps Intern",
       company: "Internship",
+      location: "McKinley, Taguig City",
       period: "February 2026 -  May 2026",
       description:
         "Developed and deployed 3 Google Workspace automation projects using Google App Script. Programmed CRM automations using Zoho Deluge, improving workflow efficiency and data management for the organization. Developed an After-Sales Workflow Blueprint in Zoho CRM that automated post-sales service tracking.",
@@ -352,25 +377,41 @@ export default function Home() {
     {
       role: "Fullstack Developer",
       company: "Freelance",
+      location: "San Jose, Batangas",
       period: "June 2025 – Present",
       description:
-        "Developed fullstack applications including web-based, mobile, and software applications tailored to client needs and requirements.",
-      tools: ["HTML", "CSS", "JavaScript", "PHP", "Flutter", "Python", "SQL"],
+        "Developed and deployed 10+ full-stack web, mobile, and desktop applications tailored to client requirements using React, React Native, Flutter, Node.js, PHP, Python, SQL, Tailwind CSS, and C++, handling end-to-end development from system design and database integration to deployment",
+      tools: [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "PHP",
+        "Flutter",
+        "Python",
+        "SQL",
+        "React",
+        "React Native",
+        "Node.js",
+        "Tailwind CSS",
+        "C++",
+      ],
     },
     {
       role: "Associate Project Manager for Product and Innovation",
       company: "Tech Executive Labs",
+      location: "Lipa City",
       period: "February 2025 - Present",
       description:
-        "Designed user-centric prototypes and UI/UX flows using Figma, improving design clarity and development efficiency. Supported innovation initiatives by contributing to product ideation, market research, and validation strategies.",
-      tools: ["Figma", "Adobe Illustrator", "Canva"],
+        "Led a team responsible for designing organizational products and ensuring alignment across departments.Designed user-centric prototypes and UI/UX flows using Figma, improving design clarity and development efficiency. Supported innovation initiatives through product ideation and market research. Collaborated with various departments, particularly the technology team, to initiate and propose solutions and interfaces that enhance products and support the organization’s mission.",
+      tools: ["Figma", "Adobe Illustrator", "Canva", "Blue"],
     },
   ];
 
   const tools = {
     Languages: [
       { name: "JavaScript", icon: "/icons/js.svg" },
-      { name: "TypeScript", icon: "/icons/js.svg" },
+      { name: "TypeScript", icon: "/icons/Typescript.svg.png" },
+      { name: "AppScript", icon: "/icons/Google_Apps_Script.svg" },
       { name: "Python", icon: "/icons/python.png" },
       { name: "HTML/CSS", icon: "/icons/html5.svg" },
       { name: "PHP", icon: "/icons/php.svg" },
@@ -392,6 +433,8 @@ export default function Home() {
       { name: "JetBrains", icon: "/icons/jet-brains.png" },
       { name: "Copilot", icon: "/icons/copilot.png" },
       { name: "Gemini", icon: "/icons/gemini.png" },
+      { name: "Claude", icon: "/icons/claude-icon-logo.png" },
+      { name: "ZOHO CRM", icon: "/icons/Zoho_CRM_(application).svg" },
       { name: "Adobe Illustrator", icon: "/icons/adobe illustrator.png" },
     ],
     Databases: [
@@ -403,6 +446,42 @@ export default function Home() {
   };
 
   const events = [
+    {
+      title: "Build with AI 2026: Next-Gen Builders!",
+      location: "GT-Toyota Asian Center, Katipunan Avenue, Quezon City",
+      date: "April 2026",
+      description:
+        "Attended the final event of the Build with AI Manila 2026 Series, continuing to explore Google's AI and Cloud technologies through hands-on activities and technical sessions. Participated in a mini hackathon where attendees were challenged to develop an application within a limited timeframe. Beyond the technical learning, the event provided valuable networking opportunities and meaningful connections with fellow developers and technology enthusiasts.",
+      images: [
+        "/events/Build with AI 2026 Next-Gen Builders!_1.jpg",
+        "/events/Build with AI 2026 Next-Gen Builders!_2.jpg",
+        "/events/Build with AI 2026 Next-Gen Builders!_3.jpg",
+      ],
+    },
+    {
+      title: "Build with AI Manila 2026: Beyond the Prompt",
+      location: "Accenture People Hub, 2 11th Drive, Taguig",
+      date: "April 2026",
+      description:
+        "Attended the second Build with AI Manila 2026 event, where I participated in interactive codelabs focused on Retrieval-Augmented Generation (RAG), API integrations, and cloud deployment. The experience strengthened my understanding of modern AI development workflows and cloud-based application deployment.",
+      images: [
+        "/events/Build with AI Manila 2026 Beyond the Prompt_1.jpg",
+        "/events/Build with AI Manila 2026 Beyond the Prompt_2.jpg",
+        "/events/Build with AI Manila 2026 Beyond the Prompt_3.jpg",
+      ],
+    },
+    {
+      title: "Build with AI 2026: Break the Pattern",
+      location: "Accenture People Hub, 2 11th Drive, Taguig",
+      date: "March 2026",
+      description:
+        "Attended one of the Build with AI Manila 2026 events celebrating International Women's Day. Participated in hands-on codelabs and gained practical experience with Google's latest AI and Cloud technologies, including Gemini CLI, Antigravity, and Stitch. The event provided valuable insights into emerging AI tools and their real-world applications.",
+      images: [
+        "/events/Build with AI 2026 Break the Pattern_1.jpg",
+        "/events/Build with AI 2026 Break the Pattern_2.jpg",
+        "/events/Build with AI 2026 Break the Pattern_3.jpg",
+      ],
+    },
     {
       title: "Philippine Innovation Conference 2025",
       location: "Batangas City",
@@ -550,14 +629,14 @@ export default function Home() {
                         alert("Link copied to clipboard!");
                       }
                     }}
-                    className="w-8 h-8 border border-border bg-card hover:bg-accent hover:border-muted-foreground/30 transition-colors rounded-lg flex items-center justify-center shrink-0"
+                    className="w-8 h-8 border border-secondary-accent bg-card hover:bg-secondary-accent/15 transition-colors rounded-lg flex items-center justify-center shrink-0"
                     aria-label="Share portfolio"
                   >
                     <Share2 className="h-3.5 w-3.5 text-foreground" />
                   </button>
                   <a
                     href="mailto:your.email@example.com"
-                    className="w-8 h-8 border border-border bg-card hover:bg-accent hover:border-muted-foreground/30 transition-colors rounded-lg flex items-center justify-center shrink-0"
+                    className="w-8 h-8 border border-secondary-accent bg-card hover:bg-secondary-accent/15 transition-colors rounded-lg flex items-center justify-center shrink-0"
                     aria-label="Send email"
                   >
                     <Mail className="h-3.5 w-3.5 text-foreground" />
@@ -579,33 +658,31 @@ export default function Home() {
             </h3>
             <div className="space-y-4 sm:space-y-6">
               {experienceTimeline.map((exp, index) => (
-                <div key={index} className="relative pl-4 sm:pl-6">
-                  <div className="absolute left-0 top-2 w-2 h-2 rounded-full bg-muted-foreground/50" />
+                <div key={index} className="relative pl-4 sm:pl-6 pr-20">
+                  <div className="absolute left-0 top-2 w-2 h-2 rounded-full bg-secondary-accent" />
                   {index < experienceTimeline.length - 1 && (
                     <div className="absolute left-0.75 top-4 w-0.5 h-[calc(100%+1rem)] bg-border" />
                   )}
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-4">
-                    <div className="flex-1">
-                      <h4 className="text-sm font-medium text-foreground mb-1">
-                        {exp.role}
-                      </h4>
-                      <p className="text-xs text-muted-foreground">
-                        {exp.company}
-                      </p>
-                      <div className="flex flex-wrap gap-2 pt-2">
-                        {exp.tags.map((tag, tagIndex) => (
-                          <Badge
-                            key={tagIndex}
-                            className="text-xs text-muted-foreground px-3 py-1 border border-border bg-transparent "
-                          >
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                    <span className="text-sm text-muted-foreground sm:whitespace-nowrap">
+                  <div className="space-y-1">
+                    <h4 className="text-sm font-medium text-foreground">
+                      {exp.role}
+                    </h4>
+                    <p className="text-xs text-muted-foreground">
+                      {exp.company}
+                    </p>
+                    <span className="absolute right-0 top-0 text-xs text-muted-foreground">
                       {exp.period}
                     </span>
+                    <div className="flex flex-wrap gap-1.5 pt-1.5">
+                      {exp.tags.map((tag, tagIndex) => (
+                        <Badge
+                          key={tagIndex}
+                          className="text-xs text-muted-foreground px-2.5 py-0.5 border border-secondary-accent bg-transparent"
+                        >
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -619,7 +696,7 @@ export default function Home() {
             <div className="space-y-4 sm:space-y-6">
               {education.map((edu, index) => (
                 <div key={index} className="relative pl-4 sm:pl-6">
-                  <div className="absolute left-0 top-2 w-2 h-2 rounded-full bg-muted-foreground/50" />
+                  <div className="absolute left-0 top-2 w-2 h-2 rounded-full bg-secondary-accent" />
                   {index < education.length - 1 && (
                     <div className="absolute left-0.75 top-4 w-0.5 h-[calc(100%+1rem)] bg-border" />
                   )}
@@ -699,19 +776,28 @@ export default function Home() {
           {experiences.map((exp, index) => (
             <Card
               key={index}
-              className="p-4 sm:p-6 border border-border bg-card"
+              className="relative p-4 sm:p-6 border border-border bg-card"
             >
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-3">
+              <Badge
+                variant="secondary"
+                className="text-xs w-fit absolute right-4 top-4 sm:right-6 sm:top-6"
+              >
+                {exp.period}
+              </Badge>
+              <div className="flex flex-col sm:flex-row sm:items-start gap-2 mb-3 pr-20">
                 <h3 className="text-base font-semibold text-foreground">
                   {exp.role}
                 </h3>
-                <Badge variant="secondary" className="text-xs w-fit">
-                  {exp.period}
-                </Badge>
               </div>
               <p className="text-sm text-muted-foreground mb-3">
                 {exp.company}
               </p>
+              {exp.location && (
+                <div className="flex items-center gap-2 text-xs text-muted-foreground mb-3">
+                  <MapPin className="h-3 w-3" />
+                  <span>{exp.location}</span>
+                </div>
+              )}
               <p className="text-sm text-muted-foreground leading-relaxed">
                 {exp.description}
               </p>
@@ -720,7 +806,7 @@ export default function Home() {
                   {exp.tools.map((tool, toolIndex) => (
                     <Badge
                       key={toolIndex}
-                      className="text-xs text-muted-foreground px-3 py-1 border border-border bg-transparent"
+                      className="text-xs text-muted-foreground px-3 py-1 border border-secondary-accent bg-transparent"
                     >
                       {tool}
                     </Badge>
@@ -819,60 +905,70 @@ export default function Home() {
                 className="flex transition-transform duration-500 ease-out"
                 style={getCarouselTrackStyle(activeProjectIndex)}
               >
-                {projects.map((project) => (
-                  <div key={project.title} className="min-w-full px-1 sm:px-2">
-                    <button
-                      type="button"
-                      onClick={() => setSelectedProject(project)}
-                      className="block w-full text-left"
+                {projects.map((project, index) => {
+                  const isActive = index === activeProjectIndex;
+                  return (
+                    <div
+                      key={project.title}
+                      className={`min-w-[80%] w-[80%] px-1 sm:px-3 transition-all duration-500 ease-out ${
+                        isActive
+                          ? "scale-100 opacity-100 blur-none"
+                          : "scale-[0.95] opacity-50 blur-[2px]"
+                      }`}
                     >
-                      <Card className="h-88 sm:h-96 border border-white/10 bg-card/80 backdrop-blur-xl p-4 sm:p-6 transition-colors hover:border-muted-foreground/30">
-                        <div className="flex h-full flex-col gap-4 sm:flex-row sm:items-stretch">
-                          <div className="relative h-44 w-full overflow-hidden rounded-2xl bg-muted sm:h-full sm:w-2/5">
-                            <Image
-                              src={project.image}
-                              alt={project.title}
-                              fill
-                              className="object-cover"
-                            />
-                          </div>
-
-                          <div className="min-w-0 flex-1 space-y-4">
-                            <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
-                              <span>{project.category}</span>
-                              <span className="h-1 w-1 rounded-full bg-muted-foreground/60" />
-                              <span>{project.pillLabel}</span>
+                      <button
+                        type="button"
+                        onClick={() => setSelectedProject(project)}
+                        className="block w-full text-left"
+                      >
+                        <Card className="h-88 sm:h-96 border border-white/10 bg-card/80 backdrop-blur-xl p-4 sm:p-6 transition-colors hover:border-muted-foreground/30">
+                          <div className="flex h-full flex-col gap-4 sm:flex-row sm:items-stretch">
+                            <div className="relative h-44 w-full overflow-hidden rounded-2xl bg-muted sm:h-full sm:w-2/5">
+                              <Image
+                                src={project.image}
+                                alt={project.title}
+                                fill
+                                className="object-cover"
+                              />
                             </div>
-                            <div className="space-y-1">
-                              <h3 className="text-xl font-semibold text-foreground leading-tight">
-                                {project.title}
-                              </h3>
-                              <p className="text-sm text-muted-foreground">
-                                {project.subtitle}
+
+                            <div className="min-w-0 flex-1 space-y-4">
+                              <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
+                                <span>{project.category}</span>
+                                <span className="h-1 w-1 rounded-full bg-muted-foreground/60" />
+                                <span>{project.pillLabel}</span>
+                              </div>
+                              <div className="space-y-1">
+                                <h3 className="text-xl font-semibold text-foreground leading-tight">
+                                  {project.title}
+                                </h3>
+                                <p className="text-sm text-muted-foreground">
+                                  {project.subtitle}
+                                </p>
+                              </div>
+                              <p className="text-sm leading-relaxed text-muted-foreground">
+                                {project.description}
+                              </p>
+                              <div className="flex flex-wrap gap-2">
+                                {project.tags.map((tag) => (
+                                  <Badge
+                                    key={tag}
+                                    className="border border-secondary-accent bg-transparent text-xs text-muted-foreground"
+                                  >
+                                    {tag}
+                                  </Badge>
+                                ))}
+                              </div>
+                              <p className="text-xs text-muted-foreground">
+                                Tap the card to view project details.
                               </p>
                             </div>
-                            <p className="text-sm leading-relaxed text-muted-foreground">
-                              {project.description}
-                            </p>
-                            <div className="flex flex-wrap gap-2">
-                              {project.tags.map((tag) => (
-                                <Badge
-                                  key={tag}
-                                  className="border border-border bg-transparent text-xs text-muted-foreground"
-                                >
-                                  {tag}
-                                </Badge>
-                              ))}
-                            </div>
-                            <p className="text-xs text-muted-foreground">
-                              Tap the card to view project details.
-                            </p>
                           </div>
-                        </div>
-                      </Card>
-                    </button>
-                  </div>
-                ))}
+                        </Card>
+                      </button>
+                    </div>
+                  );
+                })}
               </div>
             </div>
 
@@ -944,7 +1040,7 @@ export default function Home() {
                 Professional certifications and official licenses
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {[
                 {
                   name: "PHILNITS Passer – 2025 (A)",
@@ -998,26 +1094,26 @@ export default function Home() {
                   className="block h-full"
                 >
                   <Card className="h-full p-4 sm:p-5 border border-border bg-card hover:border-muted-foreground/30 transition-colors cursor-pointer">
-                    <div className="flex flex-col gap-4">
-                      <div className="shrink-0 w-full aspect-square bg-accent/20 rounded-lg border border-border/50 flex items-center justify-center overflow-hidden">
+                    <div className="flex flex-row items-start gap-4">
+                      <div className="shrink-0 w-16 h-16 sm:w-20 sm:h-20 bg-accent/20 rounded-lg border border-border/50 flex items-center justify-center overflow-hidden">
                         <Image
                           src={credential.badge}
                           alt={credential.name}
-                          width={96}
-                          height={96}
-                          className="object-contain w-full h-full"
+                          width={64}
+                          height={64}
+                          className="object-contain max-h-full max-w-full p-1"
                         />
                       </div>
-                      <div className="flex-1 space-y-2">
-                        <h4 className="text-base font-semibold text-foreground leading-tight">
+                      <div className="flex-1 min-w-0 space-y-1.5">
+                        <h4 className="text-sm sm:text-base font-semibold text-foreground leading-snug">
                           {credential.name}
                         </h4>
                         {credential.title && (
-                          <p className="text-sm text-muted-foreground">
+                          <p className="text-xs sm:text-sm text-muted-foreground">
                             {credential.title}
                           </p>
                         )}
-                        <div className="flex flex-wrap gap-2 text-sm text-muted-foreground">
+                        <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground">
                           <span className="flex items-center gap-1">
                             <Award className="h-3.5 w-3.5" />
                             {credential.issuer}
@@ -1028,7 +1124,7 @@ export default function Home() {
                           </span>
                         </div>
                         {credential.focus && (
-                          <p className="text-xs text-muted-foreground pt-1">
+                          <p className="text-[11px] text-muted-foreground pt-0.5">
                             Focus: {credential.focus}
                           </p>
                         )}
@@ -1049,7 +1145,7 @@ export default function Home() {
                 Artificial Intelligence and Cloud Computing credentials
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {[
                 {
                   name: "AI Fundamentals with IBM SkillsBuild",
@@ -1117,21 +1213,21 @@ export default function Home() {
                   className="block h-full"
                 >
                   <Card className="h-full p-4 sm:p-5 border border-border bg-card hover:border-muted-foreground/30 transition-colors cursor-pointer">
-                    <div className="flex flex-col gap-4">
-                      <div className="shrink-0 w-full aspect-square bg-accent/20 rounded-lg border border-border/50 flex items-center justify-center overflow-hidden">
+                    <div className="flex flex-row items-start gap-4">
+                      <div className="shrink-0 w-16 h-16 sm:w-20 sm:h-20 bg-accent/20 rounded-lg border border-border/50 flex items-center justify-center overflow-hidden">
                         <Image
                           src={credential.badge}
                           alt={credential.name}
-                          width={96}
-                          height={96}
-                          className="object-contain w-full h-full"
+                          width={64}
+                          height={64}
+                          className="object-contain max-h-full max-w-full p-1"
                         />
                       </div>
-                      <div className="flex-1 space-y-2">
-                        <h4 className="text-base font-semibold text-foreground leading-tight">
+                      <div className="flex-1 min-w-0 space-y-1.5">
+                        <h4 className="text-sm sm:text-base font-semibold text-foreground leading-snug">
                           {credential.name}
                         </h4>
-                        <div className="flex flex-wrap gap-2 text-sm text-muted-foreground">
+                        <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground">
                           <span className="flex items-center gap-1">
                             <Award className="h-3.5 w-3.5" />
                             {credential.issuer}
@@ -1142,7 +1238,7 @@ export default function Home() {
                           </span>
                         </div>
                         {credential.focus && (
-                          <p className="text-xs text-muted-foreground pt-1">
+                          <p className="text-[11px] text-muted-foreground pt-0.5">
                             Focus: {credential.focus}
                           </p>
                         )}
@@ -1195,61 +1291,71 @@ export default function Home() {
                 className="flex transition-transform duration-500 ease-out"
                 style={getCarouselTrackStyle(activeEventIndex)}
               >
-                {events.map((event) => (
-                  <div key={event.title} className="min-w-full px-1 sm:px-2">
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setSelectedEvent({
-                          title: event.title,
-                          images: event.images,
-                        })
-                      }
-                      className="block w-full text-left"
+                {events.map((event, index) => {
+                  const isActive = index === activeEventIndex;
+                  return (
+                    <div
+                      key={event.title}
+                      className={`min-w-[80%] w-[80%] px-1 sm:px-3 transition-all duration-500 ease-out ${
+                        isActive
+                          ? "scale-100 opacity-100 blur-none"
+                          : "scale-[0.95] opacity-50 blur-[2px]"
+                      }`}
                     >
-                      <Card className="h-96 sm:h-104 border border-white/10 bg-card/80 backdrop-blur-xl p-4 sm:p-6 transition-colors hover:border-muted-foreground/30">
-                        <div className="flex h-full flex-col justify-between gap-4">
-                          <div className="space-y-3">
-                            <h3 className="text-xl font-semibold text-foreground leading-tight">
-                              {event.title}
-                            </h3>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setSelectedEvent({
+                            title: event.title,
+                            images: event.images,
+                          })
+                        }
+                        className="block w-full text-left"
+                      >
+                        <Card className="h-96 sm:h-104 border border-white/10 bg-card/80 backdrop-blur-xl p-4 sm:p-6 transition-colors hover:border-muted-foreground/30">
+                          <div className="flex h-full flex-col justify-between gap-4">
+                            <div className="space-y-3">
+                              <h3 className="text-xl font-semibold text-foreground leading-tight">
+                                {event.title}
+                              </h3>
 
-                            <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
-                              <div className="flex items-center gap-1.5">
-                                <MapPin className="h-4 w-4" />
-                                <span>{event.location}</span>
+                              <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
+                                <div className="flex items-center gap-1.5">
+                                  <MapPin className="h-4 w-4" />
+                                  <span>{event.location}</span>
+                                </div>
+                                <div className="flex items-center gap-1.5">
+                                  <Calendar className="h-4 w-4" />
+                                  <span>{event.date}</span>
+                                </div>
                               </div>
-                              <div className="flex items-center gap-1.5">
-                                <Calendar className="h-4 w-4" />
-                                <span>{event.date}</span>
-                              </div>
+
+                              <p className="text-sm leading-relaxed text-muted-foreground">
+                                {event.description}
+                              </p>
                             </div>
 
-                            <p className="text-sm leading-relaxed text-muted-foreground">
-                              {event.description}
-                            </p>
+                            <div className="grid grid-cols-3 gap-2">
+                              {event.images.slice(0, 3).map((image) => (
+                                <div
+                                  key={image}
+                                  className="relative aspect-square overflow-hidden rounded-xl bg-muted"
+                                >
+                                  <Image
+                                    src={image}
+                                    alt={event.title}
+                                    fill
+                                    className="object-cover"
+                                  />
+                                </div>
+                              ))}
+                            </div>
                           </div>
-
-                          <div className="grid grid-cols-3 gap-2">
-                            {event.images.slice(0, 3).map((image) => (
-                              <div
-                                key={image}
-                                className="relative aspect-square overflow-hidden rounded-xl bg-muted"
-                              >
-                                <Image
-                                  src={image}
-                                  alt={event.title}
-                                  fill
-                                  className="object-cover"
-                                />
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </Card>
-                    </button>
-                  </div>
-                ))}
+                        </Card>
+                      </button>
+                    </div>
+                  );
+                })}
               </div>
             </div>
 

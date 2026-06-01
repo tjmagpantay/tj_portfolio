@@ -71,11 +71,6 @@ export default function Sidebar() {
       icon: MessageSquare,
       href: "https://discord.com/users/768389342162190356",
     },
-    {
-      name: "Email",
-      icon: Mail,
-      href: "mailto:tjmagpantay@gmail.com",
-    },
   ];
 
   // Detect which section is in view
@@ -137,23 +132,20 @@ export default function Sidebar() {
       {/* Mobile Top Navbar */}
       <div className="fixed top-0 left-0 right-0 z-60 lg:hidden bg-card border-b border-border">
         <div className="flex items-center justify-between px-4 py-3">
-          {/* Logo */}
+          {/* Logo only */}
           <div
-            className="flex items-center gap-3 cursor-pointer"
+            className="flex items-center cursor-pointer"
             onClick={handleLogoClick}
           >
-            <div className="h-10 w-10 rounded-sm overflow-hidden bg-muted flex items-center justify-center">
+            <div className="h-10 w-10 rounded-lg overflow-hidden bg-muted flex items-center justify-center">
               <Image
-                src="/icons/hershey.png"
+                src="/icons/porpol-catto.png"
                 alt="TJ Magpantay"
                 width={40}
                 height={40}
                 className="object-contain"
               />
             </div>
-            <span className="text-sm font-semibold text-foreground">
-              TJ Magpantay
-            </span>
           </div>
 
           {/* Hamburger Button */}
@@ -175,72 +167,60 @@ export default function Sidebar() {
         />
       )}
 
-      {/* Sidebar */}
+      {/* Sidebar — narrow icon-only */}
       <div
-        className={`fixed lg:fixed right-0 lg:right-auto lg:left-8 xl:left-64 top-10 lg:top-8 bottom-0 lg:bottom-8 w-72 z-50 transition-transform duration-300 ease-in-out ${
+        className={`fixed lg:fixed right-0 lg:right-auto lg:left-52 xl:left-78 top-10 lg:top-8 bottom-0 lg:bottom-8 w-20 z-50 transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "translate-x-full lg:translate-x-0"
         }`}
       >
-        <Card className="h-full border border-border bg-card rounded-none lg:rounded-lg shadow-sm flex flex-col">
-          {/* Profile Section - Hidden on mobile, visible on desktop */}
+        <Card className="h-full border border-border bg-card rounded-none lg:rounded-xl shadow-sm flex flex-col items-center overflow-hidden">
+          {/* Logo — desktop only */}
           <div
-            className="hidden lg:flex p-6 items-center gap-4 cursor-pointer"
+            className="hidden lg:flex p-4 items-center justify-center cursor-pointer"
             onClick={handleLogoClick}
           >
-            <div className="h-12 w-12 rounded-sm overflow-hidden bg-muted flex items-center justify-center">
+            <div className="h-12 w-12 rounded-md overflow-hidden bg-muted flex items-center justify-center">
               <Image
-                src="/icons/hershey.png"
+                src="/icons/porpol-catto.png"
                 alt="TJ Magpantay"
-                width={48}
-                height={48}
+                width={40}
+                height={40}
                 className="object-contain"
               />
             </div>
-            <div>
-              <h2 className="text-base font-semibold text-foreground">
-                TJ Magpantay
-              </h2>
-              <p className="text-xs text-muted-foreground">
-                BSIT • Developer & Designer
-              </p>
-            </div>
           </div>
 
-          <Separator className="hidden lg:block bg-border" />
+          <Separator className="hidden lg:block bg-border w-10 mx-auto" />
 
-          {/* Navigation Menu */}
-          <nav className="flex-1 py-4 px-3 overflow-y-auto pt-6 lg:pt-4">
-            <div className="flex flex-col gap-1.5">
+          {/* Navigation — icon only in square containers */}
+          <nav className="flex-1 py-3 px-2.5 pt-6 lg:pt-4">
+            <div className="flex flex-col items-center gap-1">
               {navItems.map((item) => {
                 const Icon = item.icon;
                 const isActive = activeSection === item.id;
                 return (
-                  <Button
+                  <button
                     key={item.id}
-                    variant={isActive ? "secondary" : "ghost"}
-                    className={`w-full justify-start gap-3 text-sm font-medium transition-colors ${
+                    className={`w-11 h-11 rounded-lg flex items-center justify-center transition-all duration-200 ${
                       isActive
-                        ? "bg-accent text-accent-foreground"
-                        : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
+                        ? "bg-secondary-accent text-white shadow-md shadow-secondary-accent/25"
+                        : "text-muted-foreground hover:bg-secondary-accent/15 hover:text-foreground"
                     }`}
                     onClick={() => handleNavigation(item.path, item.id)}
+                    aria-label={item.label}
                   >
-                    <Icon className="h-4 w-4" />
-                    {item.label}
-                  </Button>
+                    <Icon className="h-[18px] w-[18px]" />
+                  </button>
                 );
               })}
             </div>
           </nav>
 
-          <Separator className="bg-border" />
+          <Separator className="bg-border w-10 mx-auto" />
 
-          {/* Socials Section */}
-          <div className="p-4 lg:p-5">
-            <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3 px-1">
-              Socials
-            </h3>
-            <div className="flex items-center gap-2 flex-wrap">
+          {/* Socials — vertical layout */}
+          <div className="px-2 pb-3 pt-2">
+            <div className="flex flex-col items-center gap-1">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
                 return (
@@ -249,7 +229,7 @@ export default function Sidebar() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                    className="w-9 h-9 flex items-center justify-center rounded-lg text-muted-foreground transition-all duration-200 hover:bg-secondary-accent/15 hover:text-foreground"
                     aria-label={social.name}
                   >
                     <Icon className="h-4 w-4" />
