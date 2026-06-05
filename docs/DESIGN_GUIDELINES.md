@@ -46,3 +46,9 @@ Usage notes:
 
 - Vercel
 
+## Responsive Layout
+
+- The sidebar is `position: fixed` with a narrow icon-only design (`w-20` / 80px).
+- On mobile (< `lg`), the sidebar slides in from the right as an overlay with a hamburger toggle; a fixed top navbar replaces the desktop logo.
+- On desktop (`lg`+), the sidebar is fixed to the left. The main content uses explicit `margin-left` to clear the sidebar — never rely on flexbox gap alone since the sidebar is out of flow.
+- Always recalculate main content margins if sidebar position or wrapper padding changes. See `docs/ARCHITECTURE.md` for the formula.

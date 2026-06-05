@@ -32,11 +32,24 @@ flowchart TD
 	C --> H[Event Image Dialog]
 ```
 
+## Responsive Layout
+
+The sidebar uses `position: fixed` and is removed from the normal document flow. The main content must use explicit left margins to avoid overlapping with the sidebar.
+
+**Breakpoint calculations:**
+- **lg (≥1024px):** Sidebar at `left-52` (208px), width `w-20` (80px). Wrapper padding `px-28` (112px). Main content margin-left = `(208 - 112 + 80 + 4)` = `180px`.
+- **xl (≥1280px):** Sidebar at `left-78` (312px), width `w-20` (80px). Wrapper padding `px-32` (128px). Main content margin-left = `(312 - 128 + 80 + 4)` = `268px`.
+
+If you change the sidebar `left` offset, wrapper padding, or sidebar width, recalculate the main content margin using:
+`margin-left = sidebar-left - wrapper-padding + sidebar-width + gap`
+
+The inner content container uses `lg:mx-0` to left-align on desktop (close to sidebar) while staying centered (`mx-auto`) on mobile.
+
 ## Core Files and Responsibilities
 - `app/layout.tsx`
 	- Loads Product Sans font.
-	- Applies global layout structure.
-	- Renders `Sidebar`, `EmailDialog`, `VisitorCounter`.
+	- Applies global layout structure (outer padding wrapper, flex container, main content with sidebar-clearing margins).
+	- Renders `Sidebar`, `VisitorCounter`.
 - `app/page.tsx`
 	- Controls intro animation and main content visibility.
 	- Owns all section data arrays (experience, projects, tools, events, etc.).
