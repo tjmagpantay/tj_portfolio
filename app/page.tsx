@@ -25,7 +25,6 @@ import ProjectDetailsDialog, {
 } from "@/components/ProjectDetailsDialog";
 
 export default function Home() {
-  const [currentStep, setCurrentStep] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
   const [showMain, setShowMain] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<{
@@ -37,45 +36,30 @@ export default function Home() {
   const [activeEventIndex, setActiveEventIndex] = useState(0);
   const [showCopied, setShowCopied] = useState(false);
 
-  const introTexts = [
-    { text: "Hey, I'm Tj" },
-    { text: "IT Professional in progress" },
-    { text: "I turn ideas into digital realities" },
-  ];
+  const [isVideoFading, setIsVideoFading] = useState(false);
+
+  const handleVideoEnd = () => {
+    // Stage 1: Fade out the video to black background
+    setIsVideoFading(true);
+    
+    // Stage 2: After video fades, fade out the black background wrapper
+    setTimeout(() => {
+      setIsExiting(true);
+      
+      // Stage 3: After wrapper fades, show main content
+      setTimeout(() => {
+        setShowMain(true);
+      }, 600);
+    }, 600);
+  };
 
   useEffect(() => {
-    if (currentStep < introTexts.length) {
-      const timer = setTimeout(() => {
-        setCurrentStep((prev) => prev + 1);
-      }, 1200);
-      return () => clearTimeout(timer);
-    } else {
-      // Start exit animation
-      const exitTimer = setTimeout(() => {
-        setIsExiting(true);
-      }, 400);
-
-      // Show main content
-      const showTimer = setTimeout(() => {
-        setShowMain(true);
-      }, 1200);
-
-      return () => {
-        clearTimeout(exitTimer);
-        clearTimeout(showTimer);
-      };
-    }
-  }, [currentStep, introTexts.length]);
-
-  const getAnimationClass = (index: number) => {
-    if (currentStep === index) {
-      return "translate-y-0";
-    } else if (currentStep > index) {
-      return "-translate-y-full";
-    } else {
-      return "translate-y-full";
-    }
-  };
+    // Safety fallback: transition out after 9 seconds if video does not end or load
+    const fallbackTimer = setTimeout(() => {
+      handleVideoEnd();
+    }, 9000);
+    return () => clearTimeout(fallbackTimer);
+  }, []);
 
   const getCarouselTrackStyle = (activeIndex: number) => ({
     transform: `translateX(calc(10% - ${activeIndex * 80}%))`,
@@ -560,26 +544,26 @@ export default function Home() {
   if (!showMain) {
     return (
       <div
-        className={`fixed inset-0 flex items-center justify-center bg-background z-9999 transition-opacity duration-700 ${
-          isExiting ? "opacity-0" : "opacity-100"
+        className={`fixed inset-0 flex items-center justify-center bg-[#000000] z-[9999] transition-opacity duration-1000 ${
+          isExiting ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
       >
-        <div className="text-center relative w-full h-32 px-8 overflow-hidden">
-          {introTexts.map((item, index) => (
-            <div
-              key={index}
-              className={`absolute inset-0 flex items-center justify-center transition-transform duration-700 ease-out ${getAnimationClass(
-                index,
-              )}`}
-              style={{
-                transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
-              }}
-            >
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-linear-to-r from-foreground via-muted-foreground to-foreground bg-clip-text text-transparent animate-gradient-slow">
-                {item.text}
-              </h1>
-            </div>
-          ))}
+        <div className="w-full max-w-2xl px-4 flex items-center justify-center">
+          <video
+            src="/video/cat-loadingv2.mp4"
+            autoPlay
+            muted
+            playsInline
+            preload="auto"
+            onEnded={handleVideoEnd}
+            className={`w-full h-auto object-contain transition-opacity duration-700 ${
+              isVideoFading ? "opacity-0" : "opacity-100"
+            }`}
+            style={{
+              width: "clamp(200px, 15vw, 1080px)", // Mobile-friendly, shrinks on very small screens but keeps aspect
+              height: "auto",
+            }}
+          />
         </div>
       </div>
     );
