@@ -64,6 +64,10 @@ export const metadata: Metadata = {
 
   creator: "Tammy Jane Magpantay",
 
+    verification: {
+    google: "gV7Q5Ry2oZezFdf89-xwhLwQ605FHQdUgwwWVxVKzoM",
+  },
+  
   openGraph: {
     title: "Tammy Jane Magpantay",
     description:
