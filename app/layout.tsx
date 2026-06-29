@@ -33,9 +33,64 @@ const productSans = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Tammy Jane Magpantay",
+  metadataBase: new URL("https://your-domain.com"),
+
+  title: {
+    default: "Tammy Jane Magpantay | Software Engineer",
+    template: "%s | Tammy Jane Magpantay",
+  },
+
   description:
-    "Portfolio of TJ Magpantay, a fullstack developer showcasing projects, experience, and technical skills.",
+    "Tammy Jane 'TJ' Magpantay is a Software Engineer specializing in Full Stack Development, React, Next.js, Node.js, DevOps, and AI-powered applications.",
+
+  keywords: [
+    "Tammy Jane Magpantay",
+    "TJ Magpantay",
+    "Software Engineer",
+    "Full Stack Developer",
+    "React",
+    "Next.js",
+    "Node.js",
+    "TypeScript",
+    "Portfolio",
+    "Philippines",
+  ],
+
+  authors: [
+    {
+      name: "Tammy Jane Magpantay",
+    },
+  ],
+
+  creator: "Tammy Jane Magpantay",
+
+  openGraph: {
+    title: "Tammy Jane Magpantay",
+    description:
+      "Software Engineer Portfolio showcasing projects and experience.",
+    url: "https://your-domain.com",
+    siteName: "Tammy Jane Magpantay",
+
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+
+    locale: "en_US",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Tammy Jane Magpantay",
+    description:
+      "Software Engineer Portfolio showcasing projects and experience.",
+    images: ["/og-image.png"],
+  },
+
   icons: {
     icon: "/icons/porpol-catto.png",
     shortcut: "/icons/porpol-catto.png",
