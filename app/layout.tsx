@@ -33,7 +33,7 @@ const productSans = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://your-domain.com"),
+  metadataBase: new URL("https://tj-magpantay.vercel.app/"),
 
   title: {
     default: "Tammy Jane Magpantay | Software Engineer",
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     title: "Tammy Jane Magpantay",
     description:
       "Software Engineer Portfolio showcasing projects and experience.",
-    url: "https://your-domain.com",
+    url: "https://tj-magpantay.vercel.app/",
     siteName: "Tammy Jane Magpantay",
 
     images: [
