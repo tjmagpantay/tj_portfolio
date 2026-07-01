@@ -1022,6 +1022,15 @@ export default function Home() {
                   link: "https://www.itpec.org/statsandresults/all-passers.html",
                 },
                 {
+                  name: "Google IT Support Professional Certificate(v.3)",
+                  issuer: "Google (via Coursera)",
+                  date: "July 2026",
+                  focus: "Category: Operating System Administration, Category: Network Troubleshooting",
+                  badge:
+                    "/badges/Google_IT_Support_Professional_Certificate_v.3.png",
+                  link: "https://www.credly.com/badges/cc936dbb-da60-4e82-ae98-9e7f8411bfeb",
+                },
+                {
                   name: "Google Project Management Professional Certificate (v2)",
                   issuer: "Google (via Coursera)",
                   date: "April 2025",
