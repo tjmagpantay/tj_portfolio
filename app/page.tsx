@@ -579,7 +579,7 @@ export default function Home() {
               <div className="flex items-start justify-between gap-3">
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-semibold text-foreground">
-                    Tammy Jane M. Magpantay
+                    Tammy Jane Magpantay
                   </p>
                   <p className="text-xs text-muted-foreground">
                     BSIT • Developer & Designer
