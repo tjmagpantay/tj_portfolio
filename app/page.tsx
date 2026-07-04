@@ -364,7 +364,7 @@ export default function Home() {
       location: "San Jose, Batangas",
       period: "June 2025 – Present",
       description:
-        "Developed and deployed 10+ full-stack web, mobile, and desktop applications tailored to client requirements using React, React Native, Flutter, Node.js, PHP, Python, SQL, Tailwind CSS, and C++, handling end-to-end development from system design and database integration to deployment",
+        "Developed and deployed 15+ full-stack web, mobile, and desktop applications tailored to client requirements using React, React Native, Flutter, Node.js, PHP, Python, SQL, Tailwind CSS, and C++, handling end-to-end development from system design and database integration to deployment",
       tools: [
         "HTML",
         "CSS",
