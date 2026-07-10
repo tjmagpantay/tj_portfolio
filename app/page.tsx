@@ -41,11 +41,11 @@ export default function Home() {
   const handleVideoEnd = () => {
     // Stage 1: Fade out the video to black background
     setIsVideoFading(true);
-    
+
     // Stage 2: After video fades, fade out the black background wrapper
     setTimeout(() => {
       setIsExiting(true);
-      
+
       // Stage 3: After wrapper fades, show main content
       setTimeout(() => {
         setShowMain(true);
@@ -76,11 +76,13 @@ export default function Home() {
       degree:
         "Bachelor of Science in Information Technology Major in Service Management",
       institution: "Batangas State University TNEU – Lipa Campus",
+      award: "Magna Cumlaude (2026), PhilNITS Passer (2025)",
       period: "2022 - 2026",
     },
     {
       degree: "TVL-IT - Mobile App and Web Development",
       institution: "STI College Batangas",
+      award: "With High Honors (2022)",
       period: "2020 - 2022",
     },
   ];
@@ -131,7 +133,7 @@ export default function Home() {
       degree: "Bachelor of Science in Information Technology",
       gwa: "1.26",
       period: "Expected Graduation: July 2026",
-      achievement: "Dean's Lister (1st Year – Present)",
+      achievement: "Magna Cumlaude (2026), PhilNITS Passer (2025)",
     },
     {
       school: "STI College Batangas",
@@ -139,7 +141,7 @@ export default function Home() {
       degree: "IT in Mobile App and Web Development",
       gwa: "95",
       period: "September 2020 - June 2022",
-      achievement: "Best Work Immersion (2022)",
+      achievement: "With High Honors (2022), Best Work Immersion (2022)",
     },
   ];
 
@@ -664,13 +666,16 @@ export default function Home() {
             <h3 className="text-sm text-muted-foreground leading-relaxed">
               Education
             </h3>
+
             <div className="space-y-4 sm:space-y-6">
               {education.map((edu, index) => (
                 <div key={index} className="relative pl-4 sm:pl-6">
                   <div className="absolute left-0 top-2 w-2 h-2 rounded-full bg-secondary-accent" />
+
                   {index < education.length - 1 && (
                     <div className="absolute left-0.75 top-4 w-0.5 h-[calc(100%+1rem)] bg-border" />
                   )}
+
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-4">
                     <div className="flex-1">
                       <h4 className="text-sm font-normal text-foreground mb-1">
@@ -680,9 +685,18 @@ export default function Home() {
                         {edu.institution}
                       </p>
                     </div>
-                    <span className="text-sm text-muted-foreground sm:whitespace-nowrap">
-                      {edu.period}
-                    </span>
+
+                    <div className="flex flex-col sm:items-end">
+                      <span className="text-sm text-muted-foreground sm:whitespace-nowrap">
+                        {edu.period}
+                      </span>
+
+                      {edu.award && (
+                        <span className="text-xs text-muted-foreground">
+                          {edu.award}
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -1025,7 +1039,8 @@ export default function Home() {
                   name: "Google IT Support Professional Certificate(v.3)",
                   issuer: "Google (via Coursera)",
                   date: "July 2026",
-                  focus: "Category: Operating System Administration, Category: Network Troubleshooting",
+                  focus:
+                    "Category: Operating System Administration, Category: Network Troubleshooting",
                   badge:
                     "/badges/Google_IT_Support_Professional_Certificate_v.3.png",
                   link: "https://www.credly.com/badges/cc936dbb-da60-4e82-ae98-9e7f8411bfeb",
