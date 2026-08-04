@@ -76,7 +76,7 @@ export default function Home() {
       degree:
         "Bachelor of Science in Information Technology Major in Service Management",
       institution: "Batangas State University TNEU – Lipa Campus",
-      award: "Magna Cumlaude (2026), PhilNITS Passer (2025)",
+      award: "Magna Cum Laude (2026), PhilNITS Passer (2025)",
       period: "2022 - 2026",
     },
     {
@@ -132,15 +132,15 @@ export default function Home() {
       location: "Lipa, Batangas",
       degree: "Bachelor of Science in Information Technology",
       gwa: "1.26",
-      period: "Expected Graduation: July 2026",
-      achievement: "Magna Cumlaude (2026), PhilNITS Passer (2025)",
+      period: "Aug 2022 - Jul 2026",
+      achievement: "Magna Cum Laude (2026), BatStateU Outstanding Alumni, PhilNITS Passer (2025)",
     },
     {
       school: "STI College Batangas",
       location: "Kumintang Ibaba, Batangas City",
       degree: "IT in Mobile App and Web Development",
       gwa: "95",
-      period: "September 2020 - June 2022",
+      period: "Sep 2020 - Jun 2022",
       achievement: "With High Honors (2022), Best Work Immersion (2022)",
     },
   ];
@@ -350,7 +350,7 @@ export default function Home() {
       role: "DevOps Intern",
       company: "Internship",
       location: "McKinley, Taguig City",
-      period: "February 2026 -  May 2026",
+      period: "Feb 2026 -  May 2026",
       description:
         "Developed and deployed 3 Google Workspace automation projects using Google App Script. Programmed CRM automations using Zoho Deluge, improving workflow efficiency and data management for the organization. Developed an After-Sales Workflow Blueprint in Zoho CRM that automated post-sales service tracking.",
       tools: [
@@ -364,7 +364,7 @@ export default function Home() {
       role: "Fullstack Developer",
       company: "Freelance",
       location: "San Jose, Batangas",
-      period: "June 2025 – Present",
+      period: "Jun 2025 – Present",
       description:
         "Developed and deployed 15+ full-stack web, mobile, and desktop applications tailored to client requirements using React, React Native, Flutter, Node.js, PHP, Python, SQL, Tailwind CSS, and C++, handling end-to-end development from system design and database integration to deployment",
       tools: [
@@ -386,7 +386,7 @@ export default function Home() {
       role: "Associate Project Manager for Product and Innovation",
       company: "Tech Executive Labs",
       location: "Lipa City",
-      period: "February 2025 - Present",
+      period: "Feb 2025 - Dec 2025",
       description:
         "Led a team responsible for designing organizational products and ensuring alignment across departments.Designed user-centric prototypes and UI/UX flows using Figma, improving design clarity and development efficiency. Supported innovation initiatives through product ideation and market research. Collaborated with various departments, particularly the technology team, to initiate and propose solutions and interfaces that enhance products and support the organization’s mission.",
       tools: ["Figma", "Adobe Illustrator", "Canva", "Blue"],
@@ -616,7 +616,7 @@ export default function Home() {
                   </a>
                 </div>
               </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-sm text-muted-foreground leading-relaxed text-justify">
                 I'm a curious developer, designer, and IT enthusiast. I build
                 user-focused applications and system experiences from clean
                 front-end interfaces to functional back-end systems. I don’t
