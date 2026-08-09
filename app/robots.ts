@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://tj-magpantay.vercel.app/sitemap.xml",
+    sitemap: "https://tammy-jane-magpantay.vercel.app/sitemap.xml",
   };
 }
