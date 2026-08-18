@@ -133,7 +133,8 @@ export default function Home() {
       degree: "Bachelor of Science in Information Technology",
       gwa: "1.26",
       period: "Aug 2022 - Jul 2026",
-      achievement: "Magna Cum Laude (2026), BatStateU Outstanding Alumni, PhilNITS Passer (2025)",
+      achievement:
+        "Magna Cum Laude (2026), BatStateU Outstanding Alumni, PhilNITS Passer (2025)",
     },
     {
       school: "STI College Batangas",
@@ -549,11 +550,16 @@ export default function Home() {
               isVideoFading ? "opacity-0" : "opacity-100"
             }`}
             style={{
-              width: "clamp(200px, 15vw, 1080px)", // Mobile-friendly, shrinks on very small screens but keeps aspect
+              width: "clamp(200px, 15vw, 1080px)",
               height: "auto",
             }}
           />
         </div>
+
+        {/* Developer Credit */}
+        <p className="absolute bottom-6 left-0 right-0 text-center text-xs text-white/40 tracking-wide">
+          Developed by Tammy Jane Magpantay
+        </p>
       </div>
     );
   }
@@ -617,10 +623,7 @@ export default function Home() {
                 </div>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed text-justify">
-                I'm a curious developer, designer, and IT enthusiast. I build
-                user-focused applications and system experiences from clean
-                front-end interfaces to functional back-end systems. I don’t
-                just code; I design, iterate, and debug with intention.
+               Full-Stack Developer with experience delivering web, mobile, and desktop applications through freelance projects and industry internships. Skilled in PHP, Python, SQL, JavaScript, Flutter and workflow automation, with proven experience leading development teams and deploying production-ready solutions.
               </p>
             </Card>
           </div>
