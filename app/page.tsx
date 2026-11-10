@@ -89,6 +89,27 @@ export default function Home() {
 
   const experienceTimeline = [
     {
+      role: "Project Coordinator",
+      company: "Full-time",
+      tags: [
+        "CPM",
+        "Project Management",
+        "Trados",
+        "Jira",
+        "Google Workspace",
+      ],
+      period: "Oct 2026 - Present",
+    },
+    {
+      role: "Lecturer I",
+      company: "Part-time",
+      tags: [
+        "IT",
+        "College of Informatics and Computing Sciences",
+      ],
+      period: "Oct 2026 - Present",
+    },
+    {
       role: "DevOps Intern",
       company: "Internship",
       tags: [
